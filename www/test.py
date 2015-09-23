@@ -2,8 +2,17 @@ __author__ = 'YiLIU'
 
 import www.orm, asyncio, aiomysql
 from www.models import User
+import functools
 
 
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+
+
+@log
 def test(loop):
     yield from www.orm.create_pool(loop=loop, user='www-data',
                                    password='www-data',
@@ -12,7 +21,5 @@ def test(loop):
              image='about:blank')
 
     yield from u.save()
+print(test.__name__)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(test(loop))
-loop.close()
