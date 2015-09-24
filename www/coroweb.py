@@ -9,6 +9,7 @@ from urllib import parse
 from aiohttp import web
 from www.apis import APIError
 
+
 def get(path):
     '''
     Define decorator @get('/path')
@@ -30,7 +31,7 @@ def post(path):
     :return:
     '''
     def decorator(func):
-        @functools(func)
+        @functools.wraps(func)
         def wrapper(*args, **kw):
             return func(*args, **kw)
         wrapper.__method__ = 'POST'
@@ -59,7 +60,7 @@ def get_named_kw_args(fn):
 
 
 def has_named_kw_args(fn):
-    params = inspect.singature(fn).parameters
+    params = inspect.signature(fn).parameters
     for name, param in params.items():
         if param.kind == inspect.Parameter.KEYWORD_ONLY:
             return True
@@ -143,19 +144,19 @@ class RequestHandler(object):
                     logging.warning('Duplicate arg name in named arg and kw '
                                     'args: %s' % k)
                 kw[k] = v
-            if self._has_request_arg:
+        if self._has_request_arg:
                 kw['request'] = request
             # check required kw:
-            if self._required_kw_args:
-                for name in self._required_kw_args:
-                    if not name in kw:
-                        return web.HTTPBadRequest('Missing argument: %s' % name)
-            logging.info('call with args: %s' % str(kw))
-            try:
-                r = yield from self._func(**kw)
-                return r
-            except APIError as e:
-                return dict(error=e.error, data=e.data, message=e.message)
+        if self._required_kw_args:
+            for name in self._required_kw_args:
+                if not name in kw:
+                    return web.HTTPBadRequest('Missing argument: %s' % name)
+        logging.info('call with args: %s' % str(kw))
+        try:
+            r = yield from self._func(**kw)
+            return r
+        except APIError as e:
+            return dict(error=e.error, data=e.data, message=e.message)
 
 
 def add_static(app):
@@ -173,8 +174,8 @@ def add_route(app, fn):
         inspect.isgeneratorfunction(fn):
         fn = asyncio.coroutine(fn)
     logging.info('add route %s %s => %s(%s)' %
-                 method, path, fn.__name__,
-                 ', '.join(inspect.signature(fn).parameters.keys())
+                 (method, path, fn.__name__,
+                 ', '.join(inspect.signature(fn).parameters.keys()))
                  )
     app.router.add_route(method, path, RequestHandler(app, fn))
 
