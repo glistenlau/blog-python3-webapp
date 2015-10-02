@@ -1,6 +1,6 @@
 __author__ = 'YiLIU'
 
-import www.orm, asyncio, aiomysql
+import www.orm, asyncio, aiomysql, select
 from www.models import User
 import functools
 
@@ -14,12 +14,14 @@ def log(func):
 
 @log
 def test(loop):
-    yield from www.orm.create_pool(loop=loop, user='www-data',
+    yield from www.orm.create_pool(loop=loop, port=3307, user='www-data',
                                    password='www-data',
                                   db='awesome')
-    u = User(name='Test', email='test@example.com', passwd='1234567890',
-             image='about:blank')
+    u = yield from User.findAll('email=?', ['glistenlau@gmail.com'])
+    user = u[0]
+    print(user.id)
 
-    yield from u.save()
-print(test.__name__)
+loop = asyncio.get_event_loop()
+loop.run_until_complete(test(loop))
+loop.close()
 

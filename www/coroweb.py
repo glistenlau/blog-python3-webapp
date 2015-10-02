@@ -66,7 +66,7 @@ def has_named_kw_args(fn):
             return True
 
 
-def has_var_kw_args(fn):
+def has_var_kw_arg(fn):
     params = inspect.signature(fn).parameters
     for name, param in params.items():
         if param.kind == inspect.Parameter.VAR_KEYWORD:
@@ -97,7 +97,7 @@ class RequestHandler(object):
         self._app = app
         self._func = fn
         self._has_request_arg = has_request_arg(fn)
-        self._has_var_kw_arg = has_var_kw_args(fn)
+        self._has_var_kw_arg = has_var_kw_arg(fn)
         self._has_named_kw_args = has_named_kw_args(fn)
         self._named_kw_args = get_named_kw_args(fn)
         self._required_kw_args = get_required_kw_args(fn)
@@ -134,7 +134,7 @@ class RequestHandler(object):
             if not self._has_var_kw_arg and self._named_kw_args:
                 # remove all unnamed kw
                 copy = dict()
-                for name in self.named_kw_args:
+                for name in self._named_kw_args:
                     if name in kw:
                         copy[name] = kw[name]
                 kw = copy

@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<!--
-{% macro pagination(url, page) %}
-    <ul class="ur-pagination">
-        {% if page.has_previous %}
-            <li>
-                <a href="{{ url }}{{ page.page_index - 1}}">
-                    <i class="uk-icon-angle-double-left"></i></a>
-            </li>
-        {% else %}
-            <li class="uk-disabled">
-                <span><i class="uk-icon-angle-double-left"></i></span>
-            </li>
-        {% endif %}
-            <li class="ur-active">
-                <span>{{ page.page_index }}</span>
-            </li>
-        {% if page.has_next %}
-            <li>
-                <a href="{{ url }}{{ page.page_index + 1 }}">
-                    <i class="uk-icon-angle-double-right"></i>
-                </a>
-            </li>
-        {% else %}
-            <li class="uk-disabled">
-                <span>
-                    <i class="icon-angle-double-right"></i>
-                </span>
-            </li>
-        {% endif %}
-    </ul>
-{% endmacro %}
--->
-<html lang="en">
+<!--{% macro pagination(url, page) %}-->
+    <!--<ul class="ur-pagination">-->
+        <!--{% if page.has_previous %}-->
+            <!--<li>-->
+                <!--<a href="{{ url }}{{ page.page_index - 1}}">-->
+                    <!--<i class="uk-icon-angle-double-left"></i></a>-->
+            <!--</li>-->
+        <!--{% else %}-->
+            <!--<li class="uk-disabled">-->
+                <!--<span><i class="uk-icon-angle-double-left"></i></span>-->
+            <!--</li>-->
+        <!--{% endif %}-->
+            <!--<li class="ur-active">-->
+                <!--<span>{{ page.page_index }}</span>-->
+            <!--</li>-->
+        <!--{% if page.has_next %}-->
+            <!--<li>-->
+                <!--<a href="{{ url }}{{ page.page_index + 1 }}">-->
+                    <!--<i class="uk-icon-angle-double-right"></i>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--{% else %}-->
+            <!--<li class="uk-disabled">-->
+                <!--<span>-->
+                    <!--<i class="icon-angle-double-right"></i>-->
+                <!--</span>-->
+            <!--</li>-->
+        <!--{% endif %}-->
+    <!--</ul>-->
+<!--{% endmacro %}-->
+
+<html>
 <head>
     <meta charset="UTF-8">
+    {% block meta %}<!-- block meta -->{% endblock %}
     <title>{% block title %}{% endblock %} - Glisten Blog</title>
     <link rel="stylesheet" href="/static/css/uikit.min.css">
     <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
     <link rel="stylesheet" href="/static/css/awesome.css" />
-    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery-2.1.4.js"></script>
     <script src="/static/js/sha1.min.js"></script>
     <script src="/static/js/uikit.min.js"></script>
-    <script src="/static/js/sticky.min.js"></script>
+    <script src="/static/js/components/sticky.min.js"></script>
     <script src="/static/js/vue.min.js"></script>
     <script src="/static/js/awesome.js"></script>
     {% block beforehead %}<!-- before head -->{% endblock %}
@@ -53,8 +53,13 @@
             <ul class="uk-navbar-nav">
                 <li data-url="blogs">
                     <a href="/">
-                        <i class="uk-icon-home"></i>
-                        日志
+                        <i class="uk-icon-home"></i>日志
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank"
+                       href="https://github.com/glistenlau/blog-python3-webapp">
+                        <i class="uk-icon-code"></i>源码
                     </a>
                 </li>
             </ul>
@@ -91,6 +96,14 @@
             </div>
         </div>
     </nav>
+
+    <div class="uk-container uk-container-center">
+        <div class="uk-grid">
+            <!-- content -->
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 
     <div class="uk-margin-large-top"
          style="background-color:#eee; border-top:1px solid #ccc;">
