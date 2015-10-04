@@ -168,6 +168,7 @@ def init(loop):
                                    db='awesome')
     app = web.Application(loop=loop,
                           middlewares=[logger_factory,
+                                       data_factory,
                                        auth_factory,
                                        response_factory,
                                        ])

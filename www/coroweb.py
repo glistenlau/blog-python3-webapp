@@ -81,15 +81,13 @@ def has_request_arg(fn):
         if name == 'request':
             found = True
             continue
-        if found and (
-            param.kind != inspect.Parameter.VAR_POSITIONAL and
-            param.kind != inspect.Parameter.KEYWORD_ONLY and
-            param.kind != inspect.Parameter.VAR_KEYWORD
-        ):
+        if found and (param.kind != inspect.Parameter.VAR_POSITIONAL and
+                              param.kind != inspect.Parameter.KEYWORD_ONLY and
+                              param.kind != inspect.Parameter.VAR_KEYWORD):
             raise ValueError('request parameter must be the last named '
                              'parameter in function: %s%s' % (fn.__name__,
                                                               str(sig)))
-        return found
+    return found
 
 
 class RequestHandler(object):
@@ -108,20 +106,19 @@ class RequestHandler(object):
         if self._has_var_kw_arg or self._has_named_kw_args or self._required_kw_args:
             if request.method == 'POST':
                 if not request.content_type:
-                    return web.HTTPBadRequest('Missing Content-Type.')
+                    return web.HTTPBadRequest()
                 ct = request.content_type.lower()
                 if ct.startswith('application/json'):
                     params = yield from request.json()
                     if not isinstance(params, dict):
-                        return web.HTTPBadRequest('JSON body must be object.')
+                        return web.HTTPBadRequest()
                     kw = params
                 elif ct.startswith('application/x-www-form-urlencoded') or \
                     ct.startswith('multipart/form-data'):
                     params = yield from request.post()
                     kw = dict(**params)
                 else:
-                    return web.HTTPBadRequest('Unsupported Content-Type: %s'
-                                              % request.content_type)
+                    return web.HTTPBadRequest()
             if request.method == 'GET':
                 qs = request.query_string
                 if qs:
