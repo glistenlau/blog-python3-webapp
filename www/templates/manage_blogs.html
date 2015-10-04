@@ -1,6 +1,6 @@
 {% extends '__base__.html' %}
 
-{% block tittle %}日志{% endblock %}
+{% block title %}日志{% endblock %}
 
 {% block beforehead %}
 
@@ -33,14 +33,12 @@
     }
 
     $(function() {
-        getJSON('/api/blogs', {
-            page: {{ page_index }}},
-            function (err, results) {
-                if (err) {
-                    return fatal(err);
-                }
-            $('#loading').hide();
-            initVM(results);
+        getJSON('/api/blogs', {page: {{ page_index }}}, function (err, results) {
+        if (err) {
+            return fatal(err);
+        }
+        $('#loading').hide();
+        initVM(results);
         });
     });
 </script>

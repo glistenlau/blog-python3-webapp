@@ -20,7 +20,7 @@
                             $form.showFormError(err);
                         }
                         else {
-                            return location.assign('/api/blogs/' + r.id);
+                            return location.assign('/blog/' + r.id);
                         }
                     });
                 }
@@ -70,7 +70,7 @@
         </span>
     </div>
 
-    <div id="vm" class="uk-width-2-3">
+    <div id="vm" class="uk-width-1-1">
         <form v-on="submit: submit" class="uk-form uk-form-stacked">
             <div class="uk-alert uk-alert-danger uk-hidden"></div>
             <div class="uk-form-row">
