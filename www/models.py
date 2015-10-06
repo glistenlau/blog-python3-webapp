@@ -8,7 +8,7 @@ Models for user, blog, comment.
 __author__ = 'YiLIU'
 
 import time, uuid
-from www.orm import Model, StringField, BooleanField, FloatField, TextField
+from orm import Model, StringField, BooleanField, FloatField, TextField
 
 
 def next_id():

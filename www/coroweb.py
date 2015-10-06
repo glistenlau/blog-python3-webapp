@@ -7,7 +7,7 @@ import asyncio, os, inspect, logging, functools
 
 from urllib import parse
 from aiohttp import web
-from www.apis import APIError
+from apis import APIError
 
 
 def get(path):
@@ -85,8 +85,8 @@ def has_request_arg(fn):
                               param.kind != inspect.Parameter.KEYWORD_ONLY and
                               param.kind != inspect.Parameter.VAR_KEYWORD):
             raise ValueError('request parameter must be the last named '
-                             'parameter in function: %s%s' % (fn.__name__,
-                                                              str(sig)))
+                             'parameter in function: %s%s' %
+                             (fn.__name__,str(sig)))
     return found
 
 
@@ -194,4 +194,3 @@ def add_routes(app, module_name):
             path = getattr(fn, '__route__', None)
             if method and path:
                 add_route(app, fn)
-

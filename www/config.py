@@ -7,7 +7,7 @@ Configuration
 
 __author__ = 'YiLIU'
 
-import www.config_default
+import config_default
 
 
 class Dict(dict):
@@ -48,7 +48,7 @@ class Dict(dict):
         return D
 
 
-configs = Dict().toDict(www.config_default.configs)
+configs = Dict().toDict(config_default.configs)
 
 
 # try:

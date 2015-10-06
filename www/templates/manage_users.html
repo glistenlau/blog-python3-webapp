@@ -18,15 +18,13 @@
     }
 
     $(function() {
-        getJSON('/api/users', {
-            page: {{ page_index }}
-    }, function (err, results) {
-        if (err) {
-            return fatal(err);
-        }
-        $('#loading').hide();
-        initVM(results);
-    });
+        getJSON('/api/users', {page: {{ page_index }}}, function (err, results) {
+            if (err) {
+                return fatal(err);
+            }
+            $('#loading').hide();
+            initVM(results);
+        });
     });
 
 </script>
@@ -76,7 +74,13 @@
         </tr>
         </tbody>
     </table>
-    <div v-component="pagination" v-with="page"></div>
+    {% raw %}
+    <pagination
+      page_index="{{ page.page_index }}"
+      has_previous="{{ page.has_previous }}"
+      has_next="{{ page.has_next }}">
+    </pagination>
+    {% endraw %}
 </div>
 
 {% endblock %}

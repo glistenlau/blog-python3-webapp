@@ -358,10 +358,11 @@ if (typeof(Vue)!=='undefined') {
         return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
     });
     Vue.component('pagination', {
+      props: ["page_index", "has_next", "has_previous"],
         template: '<ul class="uk-pagination">' +
                 '<li v-if="! has_previous" class="uk-disabled"><span><i class="uk-icon-angle-double-left"></i></span></li>' +
                 '<li v-if="has_previous"><a v-attr="onclick:\'gotoPage(\' + (page_index-1) + \')\'" href="#0"><i class="uk-icon-angle-double-left"></i></a></li>' +
-                '<li class="uk-active"><span v-text="page_index"></span></li>' +
+                '<li class="uk-active"><span>{{ page_index }}</span></li>' +
                 '<li v-if="! has_next" class="uk-disabled"><span><i class="uk-icon-angle-double-right"></i></span></li>' +
                 '<li v-if="has_next"><a v-attr="onclick:\'gotoPage(\' + (page_index+1) + \')\'" href="#0"><i class="uk-icon-angle-double-right"></i></a></li>' +
             '</ul>'

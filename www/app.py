@@ -14,16 +14,16 @@ import logging
 logging.basicConfig(level=logging.INFO);
 import os
 import time
-import www.orm
+import orm
 from aiohttp import web
 from datetime import datetime
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
-from www.config import configs
-from www.coroweb import add_routes
-from www.coroweb import add_static
-from www.handlers import cookie2user
-from www.handlers import COOKIE_NAME
+from config import configs
+from coroweb import add_routes
+from coroweb import add_static
+from handlers import cookie2user
+from handlers import COOKIE_NAME
 
 
 def init_jinja2(app, **kw):
@@ -160,7 +160,7 @@ def datetime_filter(t):
 
 @asyncio.coroutine
 def init(loop):
-    yield from www.orm.create_pool(loop=loop,
+    yield from orm.create_pool(loop=loop,
                                    user='www-data',
                                    host='localhost',
                                    port=3307,

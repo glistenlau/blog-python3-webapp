@@ -5,15 +5,17 @@ __author__ = 'YiLIU'
 
 ' url handlers '
 
-import re, time, json, logging, hashlib, base64, asyncio
+import re
+import time
+import json, logging, hashlib, base64, asyncio
 from aiohttp import web
-from www.coroweb import get, post
-from www.models import User, Comment, Blog, next_id
-from www.apis import Page, APIValueError, APIResourceNotFoundError, APIError, \
+from coroweb import get, post
+from models import User, Comment, Blog, next_id
+from apis import Page, APIValueError, APIResourceNotFoundError, APIError, \
     APIPermissionError
-from www.models import User, Comment, Blog, next_id
-from www.config import configs
-from www.markdown2 import markdown
+from models import User, Comment, Blog, next_id
+from config import configs
+from markdown2 import markdown
 
 COOKIE_NAME = 'awesession'
 _COOKIE_KEY = configs.session.secret
@@ -29,10 +31,8 @@ def get_page_index(page_str):
     try:
         p = int(page_str)
     except ValueError as e:
-        pass
-    if p < 1:
-        p = 1
-    return p
+        raise(ValueError)
+    return 1 if p < 1 else p
 
 
 def user2cookie(user, max_age):
@@ -100,7 +100,7 @@ def index(*, page='1'):
             page.offset, page.limit))
     return {
         '__template__': 'blogs.html',
-        'page': page,
+        'page_index': page_index,
         'blogs': blogs
     }
 
@@ -116,7 +116,7 @@ def get_blog(id):
     return {
         '__template__': 'blog.html',
         'blog': blog,
-        'comment': comments
+        'comments': comments
     }
 
 
@@ -151,7 +151,7 @@ def manage():
 @get('/manage/comments')
 def manage_comments(*, page='1'):
     return {
-        'template': 'manage_comments.html',
+        '__template__': 'manage_comments.html',
         'page_index': get_page_index(page)
     }
 
@@ -196,10 +196,14 @@ def api_comments(*, page='1'):
     num = yield from Comment.findNumber('count(id)')
     p = Page(num, page_index)
     if (num == 0):
-        return dict(page=0, comments=())
+        return dict(page=p, comments=(), blogs=())
     comments = yield from Comment.findAll(orderBy='created_at desc', limit=(
         p.offset, p.limit))
-    return dict(page=p, comments=comments)
+    blogs = list()
+    for comment in comments:
+        comment.blog_name=(yield from Blog.find(comment.blog_id)).name
+
+    return dict(page=p, comments=comments, blogs=tuple(blogs))
 
 
 @get('/api/blogs')
@@ -218,6 +222,21 @@ def api_blogs(*, page='1'):
 def api_get_blog(*, id):
     blog = yield from Blog.find(id)
     return blog
+
+
+@get('/api/users')
+def api_get_users(*, page='1'):
+    page_index = get_page_index(page)
+    num = yield from User.findNumber('count(id)')
+    p = Page(num, page_index)
+    if num == 0:
+        return dict(page=p, users=())
+    users = yield from User.findAll(
+        orderBy='created_at desc',
+        limit=(p.offset, p.limit))
+    for u in users:
+        u.passwd = '******'
+    return dict(page=p, users=users)
 
 
 _RE_EMAIL = re.compile(r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
@@ -310,10 +329,13 @@ def api_create_comment(id, request, *, content):
 
 
 @post('/api/blogs/{id}/delete')
-def api_delete_blog(request, *, id):
+def api_delete_blog(id, request):
     check_admin(request)
     blog = yield from Blog.find(id)
+    comments = yield from Comment.findAll(where="blog_id='%s'" % id)
     yield from blog.remove()
+    for comment in comments:
+        yield from comment.remove()
     return dict(id=id)
 
 
@@ -358,6 +380,3 @@ def api_register_user(*, email, name, passwd):
     r.content_type = 'application/json'
     r.body = json.dumps(user, ensure_ascii=False).encode('utf-8')
     return r
-
-
-

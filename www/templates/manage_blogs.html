@@ -10,7 +10,7 @@
             el: '#vm',
             data: {
                 blogs: data.blogs,
-                page: data.page
+                page: data.page,
             },
             methods: {
                 edit_blog: function (blog) {
@@ -18,7 +18,7 @@
                 },
                 delete_blog: function (blog) {
                     if (confirm('确认要删除"' + blog.name + '"? 删除后不可恢复!')) {
-                        postJSON('/api/blogs/' + blog.id + 'delete', function
+                        postJSON('/api/blogs/' + blog.id + '/delete', function
                         (err, r) {
                             if (err) {
                                 return alert(err.message || err.error || err);
@@ -95,7 +95,11 @@
                 </tr>
             </tbody>
         </table>
-
-        <div v-component="pagination" v-with="page"></div>
-    </div>
+        {% raw %}
+        <pagination
+          page_index="{{ page.page_index }}"
+          has_previous="{{ page.has_previous }}"
+          has_next="{{ page.has_next }}">
+        </pagination>
+        {% endraw %}
 {% endblock %}

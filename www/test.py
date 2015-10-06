@@ -1,7 +1,7 @@
 __author__ = 'YiLIU'
 
-import www.orm, asyncio, aiomysql, select
-from www.models import User
+import orm, asyncio, aiomysql, select
+from models import User
 import functools
 
 
@@ -24,4 +24,3 @@ def test(loop):
 loop = asyncio.get_event_loop()
 loop.run_until_complete(test(loop))
 loop.close()
-
