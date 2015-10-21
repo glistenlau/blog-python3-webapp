@@ -4,7 +4,6 @@
 __author__ = 'Michael Liao'
 
 import asyncio, logging
-
 import aiomysql
 
 
@@ -146,15 +145,11 @@ class ModelMetaclass(type):
         attrs['__insert__'] = 'insert into `%s` (%s, `%s`) values (%s)' % (
         tableName, ', '.join(escaped_fields), primaryKey,
         create_args_string(len(escaped_fields) + 1))
-        attrs['__update__'] = 'update `%s` set %s where `%s`=?' % (tableName,
-                                                                   ', '.join(
-                                                                       map(
-                                                                           lambda
-                                                                               f: '`%s`=?' % (
-                                                                           mappings.get(
-                                                                               f).name or f),
-                                                                           fields)),
-                                                                   primaryKey)
+        attrs['__update__'] = 'update `%s` set %s where `%s`=?' % \
+            (tableName,
+             ', '.join(map(
+                 lambda f: '`%s`=?' % (mappings.get(f).name or f), fields)),
+             primaryKey)
         attrs['__delete__'] = 'delete from `%s` where `%s`=?' % (
         tableName, primaryKey)
         return type.__new__(cls, name, bases, attrs)
@@ -253,8 +248,8 @@ class Model(dict, metaclass=ModelMetaclass):
         args.append(self.getValue(self.__primary_key__))
         rows = yield from execute(self.__update__, args)
         if rows != 1:
-            logging(
-                'failed to update by primary key: affected rows: %s' % rows)
+            logging.warn('failed to update by primary key: affected rows: %s' %
+                     rows)
 
     @asyncio.coroutine
     def remove(self):

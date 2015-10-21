@@ -350,13 +350,13 @@ function postJSON(url, data, callback) {
 // extends Vue:
 
 if (typeof(Vue)!=='undefined') {
-    Vue.filter('datetime', function (value) {
-        var d = value;
-        if (typeof(value)==='number') {
-            d = new Date(value);
-        }
-        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
-    });
+    // Vue.filter('datetime', function (value) {
+    //     var d = value;
+    //     if (typeof(value)==='number') {
+    //         d = new Date(value);
+    //     }
+    //     return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes();
+    // });
     Vue.component('pagination', {
       props: ["page_index", "has_next", "has_previous"],
         template: '<ul class="uk-pagination">' +

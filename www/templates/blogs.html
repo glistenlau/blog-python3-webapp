@@ -1,3 +1,35 @@
 {% extends '__base__.html' %}
 
 {% block title %}日志{% endblock %}
+
+{% block beforehead %}
+<script src="/static/js/blogs.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-8">
+
+  {% for blog in blogs %}
+  <article>
+    <h2><a href="/blog/{{ blog.id }}">{{ blog.name }}</a></h2>
+    <p>{{ blog.created_at|datetime }}</p>
+    <p>{{ blog.summary }}</p>
+    <p><a href="/blog/{{ blog.id }}">Continue...</a></p>
+  </article>
+  <hr>
+  {% endfor %}
+
+</div>
+
+{% raw %}
+<div class="col-sm-8" ng-controller="paginationController">
+  <ul class="pager">
+    <li><a href="#">Next Page</a></li>
+    <li><a href="#">Previous Page</a></li>
+    <li>{{ currentPage }}</li>
+  </ul>
+</div>
+{% endraw %}
+
+{% endblock %}
