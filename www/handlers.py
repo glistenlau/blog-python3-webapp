@@ -31,7 +31,7 @@ def get_page_index(page_str):
     try:
         p = int(page_str)
     except ValueError as e:
-        raise(ValueError)
+        raise (ValueError)
     return 1 if p < 1 else p
 
 
@@ -201,7 +201,7 @@ def api_comments(*, page='1'):
         p.offset, p.limit))
     blogs = list()
     for comment in comments:
-        comment.blog_name=(yield from Blog.find(comment.blog_id)).name
+        comment.blog_name = (yield from Blog.find(comment.blog_id)).name
 
     return dict(page=p, comments=comments, blogs=tuple(blogs))
 
@@ -224,6 +224,13 @@ def api_get_blog(*, id):
     return blog
 
 
+@get('/api/blog/{id}/comments')
+def api_get_blog_comments(*, id):
+    comments = yield from Comment.findAll('blog_id=?', [id],
+                                          orderBy='created_at desc')
+    return comments
+
+
 @get('/api/users')
 def api_get_users(*, page='1'):
     page_index = get_page_index(page)
@@ -239,7 +246,15 @@ def api_get_users(*, page='1'):
     return dict(page=p, users=users)
 
 
-_RE_EMAIL = re.compile(r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
+@get('/api/test')
+def api_test(*, page='1'):
+    return {
+        '__template__': 'test.html'
+    }
+
+
+_RE_EMAIL = re.compile(
+    r'^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$')
 _RE_SHA1 = re.compile(r'^[0-9a-f]{40}$')
 
 
@@ -372,7 +387,7 @@ def api_register_user(*, email, name, passwd):
     )
 
     yield from user.save()
-    #make session cookie
+    # make session cookie
     r = web.Response()
     r.set_cookie(COOKIE_NAME, user2cookie(user, 86400), max_age=86400,
                  httponly=True)

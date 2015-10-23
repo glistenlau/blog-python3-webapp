@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="blogModule">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,59 +12,63 @@
   <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
   <link rel="stylesheet" href="/static/css/awesome.css">
   <link rel="stylesheet" href="/static/css/blog.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
   <script src="/static/js/jquery-2.1.4.js"></script>
   <script src="/static/js/sha1.min.js"></script>
   <script src="/static/js/bootstrap.min.js"></script>
   <script src="/static/js/uikit.min.js"></script>
   <script src="/static/js/components/sticky.min.js"></script>
-  <script src="/static/js/angular.min.js"></script>
   <script src="/static/js/vue.min.js"></script>
   <script src="/static/js/ui-bootstrap-tpls-0.14.2.min.js"></script>
   <script src="/static/js/awesome.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
   {% block beforehead %}<!-- before head -->{% endblock %}
 </head>
 <body>
-  <nav class="blog-nav navbar-inverse">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed"
-            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/" class="navbar-brand">Glisten's Blog</a>
-        </div>
+<nav class="blog-nav navbar-inverse">
+  <div class="container" id="contenttest">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">Glisten's Blog</a>
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-              <li><a class="blog-nav-item active" href="/">Home</a></li>
-              <li><a class="blog-nav-item" href="https://github.com/glistenlau/blog-python3-webapp">Source Code</a></li>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a class="blog-nav-item active" href="/">Home</a></li>
+        <li><a class="blog-nav-item" href="https://github.com/glistenlau/blog-python3-webapp">Source Code</a></li>
+      </ul>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+             role="button" aria-haspopup="true" aria-expanded="false">
+            glistenlau <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/signout">Signout</a></li>
           </ul>
+        </li>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+  </div>
+</nav>
 
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                          role="button" aria-haspopup="true" aria-expanded="false">
-                          glistenlau <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a href="/signout">Signout</a></li>
-                        </ul>
-                      </li>
-
-                </ul>
-          </div>
-      </div>
-  </nav>
-
-<div class="container">
+<div id="content" class="container">
   <div class="blog-main">
     {% block content %}
     {% endblock %}
@@ -72,17 +76,17 @@
 </div>
 
 <div class="uk-margin-large-top"
-style="background-color:#eee; border-top:1px solid #ccc;">
-<div class="uk-container uk-container-center uk-text-center">
-  <div class="uk-panel uk-margin-top uk-margin-bottom">
-    <p>
-      <a target="_blank" href="https://github.com/glistenlau"
-      class="uk-icon-button uk-icon-github"></a>
-      <a target="_blank" href="http://linkedin.com/in/glistenlau"
-      class="uk-icon-button uk-icon-linkedin-square"></a>
-    </p>
+     style="background-color:#eee; border-top:1px solid #ccc;">
+  <div class="uk-container uk-container-center uk-text-center">
+    <div class="uk-panel uk-margin-top uk-margin-bottom">
+      <p>
+        <a target="_blank" href="https://github.com/glistenlau"
+           class="uk-icon-button uk-icon-github"></a>
+        <a target="_blank" href="http://linkedin.com/in/glistenlau"
+           class="uk-icon-button uk-icon-linkedin-square"></a>
+      </p>
+    </div>
   </div>
-</div>
 </div>
 </body>
 </html>
