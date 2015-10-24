@@ -41,7 +41,7 @@ var CommentForm = React.createClass({
         var text = this.refs.text.value.trim();
 
         if (!text || !author) {
-            return;
+            document.getElementsByClassName("commentForm").nodeType;
         }
         this.props.onCommentSubmit({content: text});
         this.refs.author.value = '';
@@ -62,7 +62,7 @@ var CommentForm = React.createClass({
 
 var CommentBox = React.createClass({
     loadCommentsFromServer: function() {
-        var url = "http://" + window.location.host + "/api" + window.location.pathname + "/comments";
+        var url = "/api/blogs/" + this.state.blog_id + "/comments";
         $.get(url, function(result) {
                 this.setState({data: result});
             }.bind(this)

@@ -224,7 +224,7 @@ def api_get_blog(*, id):
     return blog
 
 
-@get('/api/blog/{id}/comments')
+@get('/api/blogs/{id}/comments')
 def api_get_blog_comments(*, id):
     comments = yield from Comment.findAll('blog_id=?', [id],
                                           orderBy='created_at desc')
