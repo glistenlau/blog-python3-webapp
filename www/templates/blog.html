@@ -5,37 +5,37 @@
 {% block beforehead %}
 
 
-<script type="text/babel" src="/static/js/comment.js" blog_id="{{ blog.id }}"></script>
+<script type="text/babel" src="/static/js/comment.js"></script>
 <script>
-var comment_url = '/api/blogs/{{ blog.id }}/comments';
+  var comment_url = '/api/blogs/{{ blog.id }}/comments';
 
-$(function() {
-  var $form = $('#form-comment');
-  $form.submit(function(e) {
-    e.preventDefault();
-    $form.showFormError('')
-    var content = $form.find('textarea').val().trim();
-    if (content === '') {
-      return $form.showFormError('请输入评论内容！');
-    }
-    $form.postJSON(comment_url, { content: content }, function(err, result) {
-      if (err) {
-        return $form.showFormError(err);
+  $(function() {
+    var $form = $('#form-comment');
+    $form.submit(function(e) {
+      e.preventDefault();
+      $form.showFormError('')
+      var content = $form.find('textarea').val().trim();
+      if (content === '') {
+        return $form.showFormError('请输入评论内容！');
       }
+      $form.postJSON(comment_url, { content: content }, function(err, result) {
+        if (err) {
+          return $form.showFormError(err);
+        }
 
-      refresh();
+        refresh();
+      });
     });
   });
-});
 </script>
 
 {% endblock %}
 
 {% block content %}
-<div class="uk-width-1-1">
+<div class="container">
   <article class="uk-article">
     <h2>{{ blog.name }}</h2>
-    <p class="uk-article-meta">发表于{{ blog.created_at|datetime }}</p>
+    <p class="blog-post-meta">发表于{{ blog.created_at|datetime }}</p>
     <p>{{ blog.html_content|safe }}</p>
   </article>
 
@@ -57,7 +57,7 @@ $(function() {
         </div>
 
         <div class="uk-form-row">
-          <button type="submit" class="uk-button uk-button-primary">
+          <button type="submit" class="btn btn-primary">
             <i class="uk-icon-comment"></i>发表评论
           </button>
         </div>
@@ -70,7 +70,7 @@ $(function() {
 
   <h3>最新评论</h3>
 
-  <ul class="uk-comment-list" id="comment">
+  <ul class="uk-comment-list">
     {% for comment in comments %}
     <li>
       <article class="uk-comment">
@@ -88,6 +88,7 @@ $(function() {
     <p>还没有人评论...</p>
     {% endfor %}
   </ul>
+  <div id="comment"></div>
 
 
 </div>

@@ -1,68 +1,73 @@
 <!DOCTYPE html>
 <html class="uk-height-1-1">
 <head>
-    <meta charset="utf-8" />
-    <title>登录 - Awesome Python Webapp</title>
-    <link rel="stylesheet" href="/static/css/uikit.min.css">
-    <link rel="stylesheet" href="/static/css/uikit.gradient.min.css">
-    <script src="/static/js/jquery-2.1.4.js"></script>
-    <script src="/static/js/sha1.min.js"></script>
-    <script src="/static/js/uikit.min.js"></script>
-    <script src="/static/js/vue.min.js"></script>
-    <script src="/static/js/awesome.js"></script>
-    <script>
-        $(function() {
-            var vmAuth = new Vue({
-                el: '#vm',
-                data: {
-                    email: '',
-                    passwd: ''
-                },
-                methods: {
-                    submit: function(event) {
-                        event.preventDefault();
-                        var
-                                $form = $('#vm'),
-                                email = this.email.trim().toLowerCase(),
-                                data = {
-                                    email: email,
-                                    passwd: this.passwd==='' ? '' : CryptoJS.SHA1(email + ':' + this.passwd).toString()
-                                };
-                        $form.postJSON('/api/authenticate', data, function(err, result) {
-                            if (! err) {
-                                location.assign('/');
-                            }
-                        });
-                    }
-                }
-            });
-        });
-    </script>
+  <meta charset="utf-8" />
+  <title>Sign in</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cosmo/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js"></script>
+  <script src="/static/js/awesome.js"></script>
+  <style>
+    body {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      height: 100%;
+      background-color: #eee;
+    }
+
+    .form-signin {
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 
-<body class="uk-height-1-1">
-<div class="uk-vertical-align uk-text-center uk-height-1-1">
-    <div class="uk-vertical-align-middle" style="width: 320px">
-        <p><a href="/" class="uk-icon-button"><i class="uk-icon-html5"></i></a> <a href="/">Awesome Python Webapp</a></p>
-        <form id="vm" v-on="submit: submit" class="uk-panel uk-panel-box uk-form">
-            <div class="uk-alert uk-alert-danger uk-hidden"></div>
-            <div class="uk-form-row">
-                <div class="uk-form-icon uk-width-1-1">
-                    <i class="uk-icon-envelope-o"></i>
-                    <input v-model="email" name="email" type="text" placeholder="电子邮件" maxlength="50" class="uk-width-1-1 uk-form-large">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <div class="uk-form-icon uk-width-1-1">
-                    <i class="uk-icon-lock"></i>
-                    <input v-model="passwd" name="passwd" type="password" placeholder="口令" maxlength="50" class="uk-width-1-1 uk-form-large">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"><i class="uk-icon-sign-in"></i> 登录</button>
-            </div>
-        </form>
+<body>
+<div class="container">
+
+  <form id="signinForm" class="form-signin">
+    <h3 align="center"><b>Log in to Glisten's Blog</b></h3>
+    </br>
+    <div id="signin-error" class="alert alert-danger" role="alert" hidden>
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <span id="error-message"></span>
     </div>
-</div>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <br/>
+    <button class="btn btn-primary btn-block" type="submit">Log in</button>
+  </form>
+
+</div> <!-- /container -->
+<script>
+  $("#signinForm").submit(function(event) {
+
+    var email = $("#inputEmail").val().trim().toLowerCase();
+
+    var data = {
+      email: email,
+      passwd: $("#inputPassword").val() === ''? '': CryptoJS.SHA1(email +
+              ':' + $("#inputPassword").val()).toString()
+    };
+
+    $.post('api/authenticate', data)
+            .done(function(rsp) {
+              if (rsp.error) {
+                $('#error-message').text(rsp.message);
+                $('#signin-error').show();
+              } else {
+                location.assign('/');
+              }
+            })
+            .fail(function(err) {
+              alert(err.message);
+            });
+    event.preventDefault();
+  });
+</script>
 </body>
 </html>

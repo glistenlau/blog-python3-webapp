@@ -261,12 +261,12 @@ _RE_SHA1 = re.compile(r'^[0-9a-f]{40}$')
 @post('/api/authenticate')
 def authenticate(*, email, passwd):
     if not email:
-        raise APIValueError('email', 'Invalid email.')
+        raise APIValueError('email', 'Invalid email')
     if not passwd:
         raise APIValueError('passwd', 'Invalid password')
     users = yield from User.findAll('email=?', [email])
     if len(users) == 0:
-        raise APIValueError('email', 'Email not exist.')
+        raise APIValueError('email', 'Email account does not exist')
     user = users[0]
     logging.info('%s' % user.id)
     # check passwd:

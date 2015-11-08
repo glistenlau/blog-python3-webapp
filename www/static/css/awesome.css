@@ -1,17 +1,13 @@
- /*
- * custom css
- */
-a:hover, a:active {
-    text-decoration: none;
+.blog-post-meta {
+    margin-bottom: 20px;
+    color: #999;
 }
 
-#vm {
-    display: none;
-}
-#loading {
-    margin-bottom: 15px;
-}
-#error {
-    display: none;
-    margin-bottom: 15px;
+/*
+ * Override Bootstrap's default container.
+ */
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
 }
