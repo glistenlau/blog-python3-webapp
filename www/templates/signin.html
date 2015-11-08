@@ -3,13 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <title>Sign in</title>
-  <!--<link rel="stylesheet" href="/static/css/uikit.min.css">-->
-  <!--<link rel="stylesheet" href="/static/css/uikit.gradient.min.css">-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cosmo/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js"></script>
-  <!--<script src="/static/js/uikit.min.js"></script>-->
-  <!--<script src="/static/js/vue.min.js"></script>-->
   <script src="/static/js/awesome.js"></script>
   <style>
     body {
@@ -24,69 +20,26 @@
       padding: 15px;
       margin: 0 auto;
     }
-    .form-signin .form-signin-heading,
-    .form-signin .checkbox {
-      margin-bottom: 10px;
-    }
-    .form-signin .checkbox {
-      font-weight: normal;
-    }
-    .form-signin .form-control {
-      position: relative;
-      height: auto;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      padding: 10px;
-      font-size: 16px;
-    }
-    .form-signin .form-control:focus {
-      z-index: 2;
-    }
-
-
   </style>
-  <script>
-    // $(function() {
-    //   var vmAuth = new Vue({
-    //     el: '#vm',
-    //     data: {
-    //       email: '',
-    //       passwd: ''
-    //     },
-    //     methods: {
-    //       submit: function(event) {
-    //         event.preventDefault();
-    //         var
-    //                 $form = $('#vm'),
-    //                 email = this.email.trim().toLowerCase(),
-    //                 data = {
-    //                   email: email,
-    //                   passwd: this.passwd==='' ? '' : CryptoJS.SHA1(email + ':' + this.passwd).toString()
-    //                 };
-    //         $form.postJSON('/api/authenticate', data, function(err, result) {
-    //           if (! err) {
-    //             location.assign('/');
-    //           }
-    //         });
-    //       }
-    //     }
-    //   });
-    // });
-  </script>
 </head>
 
 <body>
 <div class="container">
 
   <form id="signinForm" class="form-signin">
-    <h2 class="form-signin-heading">Sign in</h2>
+    <h3 align="center"><b>Log in to Glisten's Blog</b></h3>
+    </br>
+    <div id="signin-error" class="alert alert-danger" role="alert" hidden>
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <span id="error-message"></span>
+    </div>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <br/>
-    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-primary btn-block" type="submit">Log in</button>
   </form>
 
 </div> <!-- /container -->
@@ -101,13 +54,18 @@
               ':' + $("#inputPassword").val()).toString()
     };
 
-    $("#signinForm").postJSON('/api/authenticate', data, function(err, result) {
-      if (! err) {
-        location.assign('/');
-      } else {
-        alert(err.message);
-      }
-    });
+    $.post('api/authenticate', data)
+            .done(function(rsp) {
+              if (rsp.error) {
+                $('#error-message').text(rsp.message);
+                $('#signin-error').show();
+              } else {
+                location.assign('/');
+              }
+            })
+            .fail(function(err) {
+              alert(err.message);
+            });
     event.preventDefault();
   });
 </script>

@@ -1,0 +1,13 @@
+.blog-post-meta {
+    margin-bottom: 20px;
+    color: #999;
+}
+
+/*
+ * Override Bootstrap's default container.
+ */
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
