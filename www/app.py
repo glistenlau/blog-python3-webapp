@@ -114,6 +114,12 @@ def response_factory(app, handler):
             resp = web.Response(body=r.encode('utf-8'))
             resp.content_type = 'text/html;charset=utf-8'
             return resp
+
+        if isinstance(r, list):
+            resp = web.Response(body=json.dumps(r).encode('utf-8'))
+            resp.content_type = 'application/json;charset=urf-8'
+            return resp
+
         if isinstance(r, dict):
             template = r.get('__template__')
             if template is None:
