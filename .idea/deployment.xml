@@ -12,7 +12,7 @@
             <excludedPath local="true" path="$PROJECT_DIR$/conf" />
             <excludedPath local="true" path="$PROJECT_DIR$/dist" />
             <excludedPath local="true" path="$PROJECT_DIR$/LISENSE" />
-            <excludedPath path="/srv/awesome/__pycache__/" />
+            <excludedPath path="/srv/awesome/www/__pycache__" />
           </excludedPaths>
         </serverdata>
       </paths>

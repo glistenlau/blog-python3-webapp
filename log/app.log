@@ -11262,3 +11262,39 @@ INFO:root:Response handler...
 INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
 INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
 INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 70.297 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:asyncio:poll took 121.136 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:asyncio:poll took 76.236 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:Response handler...

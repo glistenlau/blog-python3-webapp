@@ -92,6 +92,7 @@ var CommentBox = React.createClass({
                     data: result.slice(1),
                     currentUser: result[0]
                 });
+            $('#comment').show();
             }.bind(this)
         );
     },
