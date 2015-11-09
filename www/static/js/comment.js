@@ -71,14 +71,10 @@ var CommentForm = React.createClass({
                                 <img src={this.props.currentUser.image} className="user-image" width="60px" height="60px"/>
                             </div>
                             <div className="col-xs-11 col-md-11 form-group smpadding">
-                                <div class="form-control">
-                                    <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
-                                </div>
+                                <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
                             </div>
-                            <div className="clearfix visible-xs-block"></div>
-                            <div className="col-xs-1 col-md-1"></div>
-                            <div className="col-xs-11 col-md-11 form-group smpadding">
-                                <textarea className="form-control comment-box" rows="3" placeholder="Say something..." ref="text"/>
+                            <div className="col-xs-12 col-md-11 form-group smpadding comment-box">
+                                <textarea className="form-control" rows="3" placeholder="Say something..." ref="text"/>
                             </div>
                             <div className="smpadding">
                                 <button type="submit" className="btn btn-primary button-right">Post comment</button>
