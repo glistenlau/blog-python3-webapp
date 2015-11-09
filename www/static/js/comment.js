@@ -15,9 +15,7 @@ var Comment = React.createClass({
                         <span className="comment-user-name"><b>{this.props.children.user_name}</b></span>
                         <span className="comment-created-time">    •    {this.props.children.created_at.toDateTime()}</span>
                     </div>
-                    <p className="comment-content">
-                        {this.props.children.content.toString()}
-                    </p>
+                    <span className="comment-content" dangerouslySetInnerHTML={this.rawMarkup()} />
                 </div>
                 <div className="clearfix"></div>
             </div>
@@ -29,7 +27,7 @@ var CommentList = React.createClass({
     render: function() {
         var commentNodes = this.props.data.map(function(comment, index) {
             return (
-                <Comment>
+                <Comment key={index}>
                     {comment}
                 </Comment>
             );
@@ -44,6 +42,21 @@ var CommentList = React.createClass({
 });
 
 var CommentForm = React.createClass({
+
+    getInitialState: function() {
+        return {value: 'Type your comment here(**markdown** supported)...'};
+    },
+
+    handleChange: function() {
+
+        this.setState({value: (this.refs.textarea.value.length === 0)?
+            'Type your comment here(**markdown** supported)...': this.refs.textarea.value});
+    },
+
+    rawMarkup: function() {
+        return {__html: marked(this.state.value, {sanitize: true})};
+    },
+
     handleSubmit: function(e) {
         e.preventDefault();
         var text = this.refs.text.value.trim();
@@ -74,7 +87,19 @@ var CommentForm = React.createClass({
                                 <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
                             </div>
                             <div className="col-xs-12 col-md-11 form-group smpadding comment-box">
-                                <textarea className="form-control" rows="3" placeholder="Say something..." ref="text"/>
+                                <textarea
+                                    className="form-control" rows="3"
+                                    placeholder="Type your comment here(**markdown** supported)..."
+                                    onChange={this.handleChange}
+                                    ref="textarea"
+                                />
+                            </div>
+                            <div className="col-xs-12 col-md-11 col-md-push-1 form-group smpadding">
+                                <div
+                                    className="comment-content well"
+                                    rows="3"
+                                    dangerouslySetInnerHTML={this.rawMarkup()}>
+                                </div>
                             </div>
                             <div className="smpadding">
                                 <button type="submit" className="btn btn-primary button-right">Post comment</button>
