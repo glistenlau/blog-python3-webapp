@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="AWS">
+    <serverData>
+      <paths name="AWS">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/srv/awesome" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/backup" />
+            <excludedPath local="true" path="$PROJECT_DIR$/conf" />
+            <excludedPath local="true" path="$PROJECT_DIR$/dist" />
+            <excludedPath local="true" path="$PROJECT_DIR$/LISENSE" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

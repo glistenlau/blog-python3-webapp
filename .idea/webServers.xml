@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0e5718b7-0687-4a41-a8bf-d9ed5e70917b" name="AWS" url="http://glistenlau.com">
+        <fileTransfer host="54.148.252.47" port="22" privateKey="$PROJECT_DIR$/../AWS/glistenlauAWS.pem" accessType="SFTP" username="ubuntu" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
