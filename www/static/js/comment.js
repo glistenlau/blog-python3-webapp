@@ -6,7 +6,7 @@ var Comment = React.createClass({
 
     render: function() {
         return (
-            <div className="comment-box">
+            <div className="container comment-box">
                 <div className="col-xs-1 col-md-1 smpadding">
                     <img src={this.props.children.user_image} className="user-image" width="60px" height="60px" />
                 </div>
@@ -64,26 +64,28 @@ var CommentForm = React.createClass({
             );
         } else {
             return (
-                <form className="commentForm" onSubmit={this.handleSubmit}>
-                    <div className="row form-group">
-                        <div className="col-xs-1 col-md-1 form-group smpadding">
-                            <img src={this.props.currentUser.image} className="user-image" width="60px" height="60px"/>
-                        </div>
-                        <div className="col-xs-11 col-md-11 form-group smpadding">
-                            <div class="form-control">
-                                <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
+                <div className="container">
+                    <form className="commentForm" onSubmit={this.handleSubmit}>
+                        <div className="row form-group">
+                            <div className="col-xs-1 col-md-1 form-group smpadding">
+                                <img src={this.props.currentUser.image} className="user-image" width="60px" height="60px"/>
+                            </div>
+                            <div className="col-xs-11 col-md-11 form-group smpadding">
+                                <div class="form-control">
+                                    <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
+                                </div>
+                            </div>
+                            <div className="clearfix visible-xs-block"></div>
+                            <div className="col-xs-1 col-md-1"></div>
+                            <div className="col-xs-11 col-md-11 form-group smpadding">
+                                <textarea className="form-control comment-box" rows="3" placeholder="Say something..." ref="text"/>
+                            </div>
+                            <div className="smpadding">
+                                <button type="submit" className="btn btn-primary button-right">Post comment</button>
                             </div>
                         </div>
-                        <div className="clearfix visible-xs-block"></div>
-                        <div className="col-xs-1 col-md-1"></div>
-                        <div className="col-xs-11 col-md-11 form-group smpadding">
-                            <textarea className="form-control comment-box" rows="3" placeholder="Say something..." ref="text"/>
-                        </div>
-                        <div className="smpadding">
-                        <button type="submit" className="btn btn-primary button-right">Post comment</button>
-                            </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             );
         }
     }
