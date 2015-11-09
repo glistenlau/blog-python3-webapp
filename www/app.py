@@ -173,7 +173,7 @@ def init(loop):
     yield from orm.create_pool(loop=loop,
                                    user='www-data',
                                    host='localhost',
-                                   port=3307,
+                                   port=3306,
                                    password='www-data',
                                    db='awesome')
     app = web.Application(loop=loop,

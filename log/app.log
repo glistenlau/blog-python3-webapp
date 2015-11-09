@@ -11129,3 +11129,136 @@ INFO:root:Response handler...
 INFO:root:Request: GET /clientaccesspolicy.xml
 INFO:root:check user: GET /clientaccesspolicy.xml
 INFO:root:Response handler...
+INFO:root:found model: User (table: users)
+INFO:root:  found mapping: email ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: passwd ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: admin ==> <BooleanField, boolean:None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:found model: Blog (table: blogs)
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: summary ==> <StringField, varchar(200):None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:found model: Comment (table: comments)
+INFO:root:  found mapping: created_at ==> <FloatField, real:None>
+INFO:root:  found mapping: user_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_name ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: user_image ==> <StringField, varchar(500):None>
+INFO:root:  found mapping: blog_id ==> <StringField, varchar(50):None>
+INFO:root:  found mapping: content ==> <TextField, text:None>
+INFO:root:create database connection pool...
+INFO:root:init jinja2...
+INFO:root:set jinja2 template path: /srv/awesome/www/templates
+INFO:root:add route GET /api/blogs => api_blogs(page)
+INFO:root:add route GET /api/comments => api_comments(page)
+INFO:root:add route POST /api/blogs => api_create_blog(request, name, summary, content)
+INFO:root:add route POST /api/blogs/{id}/comments => api_create_comment(id, request, content)
+INFO:root:add route POST /api/blogs/{id}/delete => api_delete_blog(id, request)
+INFO:root:add route POST /api/comments/{id}/delete => api_delete_comments(id, request)
+INFO:root:add route GET /api/blogs/{id} => api_get_blog(id)
+INFO:root:add route GET /api/blogs/{id}/comments => api_get_blog_comments(request, id)
+INFO:root:add route GET /api/users => api_get_users(page)
+INFO:root:add route POST /api/users => api_register_user(email, name, passwd)
+INFO:root:add route GET /api/test => api_test(page)
+INFO:root:add route POST /api/blogs/{id} => api_update_blog(id, request, name, summary, content)
+INFO:root:add route POST /api/authenticate => authenticate(email, passwd)
+INFO:root:add route GET /blog/{id} => get_blog(id)
+INFO:root:add route GET / => index(page)
+INFO:root:add route GET /manage/ => manage()
+INFO:root:add route GET /manage/blogs => manage_blogs(page)
+INFO:root:add route GET /manage/comments => manage_comments(page)
+INFO:root:add route GET /manage/blogs/create => manage_create_blog()
+INFO:root:add route GET /manage/blogs/edit => manage_eidt_blog(id)
+INFO:root:add route GET /manage/users => manage_users(page)
+INFO:root:add route GET /register => register()
+INFO:root:add route GET /signin => signin()
+INFO:root:add route GET /signout => signout(request)
+INFO:root:add static /static/ => /srv/awesome/www/static
+INFO:root:server started at http://127.0.0.1:9000...
+INFO:asyncio:poll took 116.433 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:check user: GET /static/js/uikit.min.js
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/components/sticky.min.js
+INFO:root:check user: GET /static/js/components/sticky.min.js
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:check user: GET /static/js/vue.min.js
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:check user: GET /static/js/awesome.js
+INFO:root:Response handler...
+INFO:asyncio:poll took 11.870 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/js/comment.js
+INFO:root:check user: GET /static/js/comment.js
+INFO:root:Response handler...
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 295.242 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 6.175 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 1.149 seconds
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 8.055 seconds
+INFO:root:Request: GET /signin
+INFO:root:check user: GET /signin
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:asyncio:poll took 22.340 seconds
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]

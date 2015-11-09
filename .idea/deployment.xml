@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="AWS">
+  <component name="PublishConfigData" serverName="AWS" showNewOnTargetInSync="false">
     <serverData>
       <paths name="AWS">
         <serverdata>
@@ -12,6 +12,7 @@
             <excludedPath local="true" path="$PROJECT_DIR$/conf" />
             <excludedPath local="true" path="$PROJECT_DIR$/dist" />
             <excludedPath local="true" path="$PROJECT_DIR$/LISENSE" />
+            <excludedPath path="/srv/awesome/__pycache__/" />
           </excludedPaths>
         </serverdata>
       </paths>
