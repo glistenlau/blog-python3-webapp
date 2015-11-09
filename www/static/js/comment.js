@@ -8,14 +8,16 @@ var Comment = React.createClass({
         return (
             <div className="container comment-box">
                 <div className="col-xs-1 col-md-1 smpadding">
-                    <img src={this.props.children.user_image} className="user-image" width="60px" height="60px" />
+                    <img src={this.props.children.user_image} className="user-image" width="50px" height="50px" />
                 </div>
                 <div className="col-xs-11 col-md-11 smpadding">
                     <div className="comment-user">
                         <span className="comment-user-name"><b>{this.props.children.user_name}</b></span>
                         <span className="comment-created-time">    •    {this.props.children.created_at.toDateTime()}</span>
                     </div>
-                    <span className="comment-content" dangerouslySetInnerHTML={this.rawMarkup()} />
+                    <div style={{padding: '5px 0'}}
+                         className="comment-content"
+                         dangerouslySetInnerHTML={this.rawMarkup()} />
                 </div>
                 <div className="clearfix"></div>
             </div>
@@ -66,6 +68,8 @@ var CommentForm = React.createClass({
         }
         this.props.onCommentSubmit({content: text});
         this.refs.text.value = '';
+        this.setState({value: 'Type your comment here(**markdown**' +
+        ' supported)...'});
     },
 
     render: function() {
