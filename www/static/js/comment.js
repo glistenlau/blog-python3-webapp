@@ -49,8 +49,8 @@ var CommentForm = React.createClass({
 
     handleChange: function() {
 
-        this.setState({value: (this.refs.textarea.value.length === 0)?
-            'Type your comment here(**markdown** supported)...': this.refs.textarea.value});
+        this.setState({value: (this.refs.text.value.length === 0)?
+            'Type your comment here(**markdown** supported)...': this.refs.text.value});
     },
 
     rawMarkup: function() {
@@ -91,7 +91,7 @@ var CommentForm = React.createClass({
                                     className="form-control" rows="3"
                                     placeholder="Type your comment here(**markdown** supported)..."
                                     onChange={this.handleChange}
-                                    ref="textarea"
+                                    ref="text"
                                 />
                             </div>
                             <div className="col-xs-12 col-md-11 col-md-push-1 form-group smpadding">
