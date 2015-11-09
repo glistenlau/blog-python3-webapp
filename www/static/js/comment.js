@@ -1,16 +1,25 @@
 var Comment = React.createClass({
     rawMarkup: function() {
-        var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+        var rawMarkup = marked(this.props.children.content.toString(), {sanitize: true});
         return { __html: rawMarkup };
     },
 
     render: function() {
         return (
-            <div className="comment">
-                <h2 className="commentAuthor">
-                    {this.props.author}
-                </h2>
-                <span dangerouslySetInnerHTML={this.rawMarkup()} />
+            <div className="comment-box">
+                <div className="col-xs-1 col-md-1">
+                    <img src={this.props.children.user_image} className="user-image" width="60px" height="60px" />
+                </div>
+                <div className="col-xs-11 col-md-11">
+                    <div className="comment-user">
+                        <span className="comment-user-name"><b>{this.props.children.user_name}</b></span>
+                        <span className="comment-created-time">    •    {this.props.children.created_at.toDateTime()}</span>
+                    </div>
+                    <p className="comment-content">
+                        {this.props.children.content.toString()}
+                    </p>
+                </div>
+                <div className="clearfix"></div>
             </div>
         );
     }
@@ -20,14 +29,14 @@ var CommentList = React.createClass({
     render: function() {
         var commentNodes = this.props.data.map(function(comment, index) {
             return (
-                <Comment author={comment.user_name} key={index}>
-                    {comment.content}
+                <Comment>
+                    {comment}
                 </Comment>
             );
         });
 
         return (
-            <div className="commentList">
+            <div className="row">
                 {commentNodes}
             </div>
         );
@@ -37,25 +46,40 @@ var CommentList = React.createClass({
 var CommentForm = React.createClass({
     handleSubmit: function(e) {
         e.preventDefault();
-        var author = this.refs.author.value.trim();
         var text = this.refs.text.value.trim();
 
-        if (!text || !author) {
+        if (!text) {
             document.getElementsByClassName("commentForm").nodeType;
         }
         this.props.onCommentSubmit({content: text});
-        this.refs.author.value = '';
         this.refs.text.value = '';
     },
 
     render: function() {
-        return (
-            <form className="commentForm" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="Your name" ref="author" />
-                <input type="text" placeholder="Say something..." ref="text" />
-                <input type="submit" className="btn btn-primary" value="Post" />
-            </form>
-        );
+        if (this.props.currentUser === null) {
+            return (
+                <div className="btn-comment-signin">
+                    <a href="/signin" className="btn btn-default" onclick="/signin">Please sign in to post a comment</a>
+                </div>
+            );
+        } else {
+            return (
+                <div className="row">
+                    <form className="commentForm" onSubmit={this.handleSubmit}>
+                        <div className="col-xs-1 col-md-1 form-group">
+                            <img src={this.props.currentUser.image} className="user-image" width="60px" height="60px"/>
+                        </div>
+                        <div className="col-xs-11 col-md-11 form-group">
+                            <div class="form-control">
+                                <span className="comment-user-name"><b>{this.props.currentUser.name}</b></span>
+                            </div>
+                            <textarea className="form-control comment-box" rows="3" placeholder="Say something..." ref="text"/>
+                            <button type="submit" className="btn btn-primary button-right">Post comment</button>
+                        </div>
+                    </form>
+                </div>
+            );
+        }
     }
 });
 
@@ -64,7 +88,10 @@ var CommentBox = React.createClass({
     loadCommentsFromServer: function() {
         var url = "/api/blogs/" + this.state.blog_id + "/comments";
         $.get(url, function(result) {
-                this.setState({data: result});
+                this.setState({
+                    data: result.slice(1),
+                    currentUser: result[0]
+                });
             }.bind(this)
         );
     },
@@ -81,6 +108,7 @@ var CommentBox = React.createClass({
 
     getInitialState: function() {
         return {
+            currentUser: null,
             data: [],
             blog_id: window.location.pathname.split('/')[2]
         };
@@ -93,8 +121,9 @@ var CommentBox = React.createClass({
     render: function() {
         return (
             <div className="commentBox">
-                <h1>Comments</h1>
-                <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+                <h3><b>Comments</b></h3>
+                <CommentForm currentUser={this.state.currentUser}
+                             onCommentSubmit={this.handleCommentSubmit} />
                 <CommentList data={this.state.data} />
             </div>
         );

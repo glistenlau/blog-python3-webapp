@@ -11,3 +11,37 @@
     width: 970px;
   }
 }
+
+/*
+ * Comment makeup.
+ */
+.comment-user-name {
+    color: #B71C1C;
+}
+.comment-created-time {
+    color: #999;
+}
+.comment-content {
+    font-size: 18px;
+}
+.comment-box {
+    margin: 5px 0;
+}
+.comment-form {
+    margin: 0;
+}
+.user-image {
+    margin-left: 10px;
+    border-radius: 10px;
+    padding-top: 5px;
+}
+.button-right {
+    float: right;
+}
+.btn-comment-signin {
+    margin: 15px 0;
+
+}
+.center {
+     text-align: center;
+}

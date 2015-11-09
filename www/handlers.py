@@ -225,9 +225,11 @@ def api_get_blog(*, id):
 
 
 @get('/api/blogs/{id}/comments')
-def api_get_blog_comments(*, id):
+def api_get_blog_comments(request, *, id):
+    user = request.__user__
     comments = yield from Comment.findAll('blog_id=?', [id],
                                           orderBy='created_at desc')
+    comments.insert(0, user);
     return comments
 
 
