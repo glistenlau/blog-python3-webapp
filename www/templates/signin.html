@@ -2,7 +2,7 @@
 <html class="uk-height-1-1">
 <head>
   <meta charset="utf-8" />
-  <title>Sign in</title>
+  <title>Sign in - Glisten Blog</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cosmo/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js"></script>
@@ -16,31 +16,38 @@
     }
 
     .form-signin {
-      max-width: 330px;
       padding: 15px;
-      margin: 0 auto;
+      margin: 15px;
     }
 
   </style>
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
 
   <form id="signinForm" class="form-signin">
-    <h3 align="center"><b>Log in to Glisten's Blog</b></h3>
-    </br>
-    <div id="signin-error" class="alert alert-danger" role="alert" hidden>
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only">Error:</span>
-      <span id="error-message"></span>
+    <div class="row">
+      <div class="visible-md-block col-md-4"></div>
+      <div class="col-xs-12 col-md-4">
+        <h3 class="control-label" align="center">
+          <b>Log in to Glisten Blog</b>
+        </h3>
+        </br>
+        <div id="signin-error" class="alert alert-danger" role="alert" hidden>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          <span id="error-message"></span>
+        </div>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <br/>
+        <button class="btn btn-primary btn-block" type="submit">Log in</button>
+      </div>
+      <div class="visible-md-block col-md-4"></div>
     </div>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <br/>
-    <button class="btn btn-primary btn-block" type="submit">Log in</button>
   </form>
 
 </div> <!-- /container -->
