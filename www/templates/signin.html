@@ -20,6 +20,7 @@
       padding: 15px;
       margin: 0 auto;
     }
+
   </style>
 </head>
 
@@ -51,21 +52,21 @@
     var data = {
       email: email,
       passwd: $("#inputPassword").val() === ''? '': CryptoJS.SHA1(email +
-              ':' + $("#inputPassword").val()).toString()
+          ':' + $("#inputPassword").val()).toString()
     };
 
     $.post('api/authenticate', data)
-            .done(function(rsp) {
-              if (rsp.error) {
-                $('#error-message').text(rsp.message);
-                $('#signin-error').show();
-              } else {
-                location.assign('/');
-              }
-            })
-            .fail(function(err) {
-              alert(err.message);
-            });
+        .done(function(rsp) {
+          if (rsp.error) {
+            $('#error-message').text(rsp.message);
+            $('#signin-error').show();
+          } else {
+            location.assign('/');
+          }
+        })
+        .fail(function(err) {
+          alert(err.message);
+        });
     event.preventDefault();
   });
 </script>
