@@ -18,6 +18,27 @@ body {
   }
 }
 
+
+.row.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.smpadding {
+    padding: 3px !important;
+    margin: 0 !important;
+}
+
 /*
  * Comment makeup.
  */
@@ -37,9 +58,11 @@ body {
     margin: 0;
 }
 .user-image {
-    margin-left: 10px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
     border-radius: 10px;
-    padding-top: 5px;
 }
 .button-right {
     float: right;

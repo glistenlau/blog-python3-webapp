@@ -11298,3 +11298,229 @@ INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!',
 INFO:root:Request: GET /static/css/awesome.css
 INFO:root:check user: GET /static/css/awesome.css
 INFO:root:Response handler...
+INFO:asyncio:poll took 1553.984 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:Response handler...
+INFO:asyncio:poll took 5.843 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/js/comment.js
+INFO:root:check user: GET /static/js/comment.js
+INFO:root:Response handler...
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 6.397 seconds
+INFO:root:Request: GET /signin
+INFO:root:check user: GET /signin
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:asyncio:poll took 5.701 seconds
+INFO:root:Request: POST /api/authenticate
+INFO:root:request from: <MultiDictProxy {'email': 'glistenlau@gmail.com', 'passwd': 'dc45bc2129e5a6a7d62833f72d673c7f953dc8fa'}>
+INFO:root:check user: POST /api/authenticate
+INFO:root:Response handler...
+INFO:root:call with args: {'email': 'glistenlau@gmail.com', 'passwd': 'dc45bc2129e5a6a7d62833f72d673c7f953dc8fa'}
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where email=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:0014448484898944024ddfb524544dda022d31e64ae1a7f000
+INFO:asyncio:poll took 4.857 seconds
+INFO:root:Request: POST /api/authenticate
+INFO:root:request from: <MultiDictProxy {'email': 'glistenlau@gmail.com', 'passwd': '3847bb8d93751cddf4904a6194cf728d2405f30f'}>
+INFO:root:check user: POST /api/authenticate
+INFO:root:Response handler...
+INFO:root:call with args: {'email': 'glistenlau@gmail.com', 'passwd': '3847bb8d93751cddf4904a6194cf728d2405f30f'}
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where email=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:0014448484898944024ddfb524544dda022d31e64ae1a7f000
+INFO:asyncio:poll took 6.276 seconds
+INFO:root:Request: POST /api/authenticate
+INFO:root:request from: <MultiDictProxy {'email': 'glistenlau@gmail.com', 'passwd': '158a3c0647d1341ba4103bc0da868f87baad404e'}>
+INFO:root:check user: POST /api/authenticate
+INFO:root:Response handler...
+INFO:root:call with args: {'email': 'glistenlau@gmail.com', 'passwd': '158a3c0647d1341ba4103bc0da868f87baad404e'}
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where email=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:0014448484898944024ddfb524544dda022d31e64ae1a7f000
+INFO:root:pass the authentication
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 3.908 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 1.071 seconds
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 10.680 seconds
+INFO:root:Request: POST /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:request from: <MultiDictProxy {'content': 'react is awesome'}>
+INFO:root:check user: POST /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request POST /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'react is awesome'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: insert into `comments` (`created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content`, `id`) values (?, ?, ?, ?, ?, ?, ?)
+INFO:asyncio:poll took 11.379 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1447050699.12513, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001447050699125104d653cf186454585d1e76b4543e87b000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'react is awesome', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}, {'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/js/awesome.js
+INFO:root:check user: GET /static/js/awesome.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/uikit.min.js
+INFO:root:check user: GET /static/js/uikit.min.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/components/sticky.min.js
+INFO:root:check user: GET /static/js/components/sticky.min.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:Request: GET /static/js/vue.min.js
+INFO:root:check user: GET /static/js/vue.min.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/comment.js
+INFO:root:check user: GET /static/js/comment.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/comment.js
+INFO:root:check user: GET /static/js/comment.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1447050699.12513, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001447050699125104d653cf186454585d1e76b4543e87b000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'react is awesome', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}, {'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:asyncio:poll took 215.360 seconds
+INFO:root:Request: GET /CFIDE/administrator/
+INFO:root:check user: GET /CFIDE/administrator/
+INFO:root:Response handler...
+INFO:asyncio:poll took 442.606 seconds
+INFO:root:Request: GET /
+INFO:root:check user: GET /
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {}
+INFO:root:SQL: select count(id) _num_ from `blogs`
+INFO:root:[{'_num_': 1}]
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` order by created_at desc limit ?, ?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:asyncio:poll took 225.633 seconds
+INFO:root:Request: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:check user: GET /blog/001444848824833661488ae507a468f95c9cb0919b85b9d000
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `summary`, `user_id`, `user_name`, `name`, `user_image`, `content` from `blogs` where `id`=?
+INFO:root:[{'created_at': 1444848824.83383, 'summary': 'This is my first blog!', 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'user_name': 'glistenlau', 'name': 'Hello World!', 'content': 'This is my first blog!\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest\ntest', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1447050699.12513, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001447050699125104d653cf186454585d1e76b4543e87b000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'react is awesome', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}, {'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
+INFO:root:Request: GET /static/css/awesome.css
+INFO:root:check user: GET /static/css/awesome.css
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /static/js/comment.js
+INFO:root:check user: GET /static/js/comment.js
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:Request: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:check user: GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments
+INFO:root:SQL: select `id`, `email`, `image`, `created_at`, `passwd`, `admin`, `name` from `users` where `id`=?
+INFO:root:[{'email': 'glistenlau@gmail.com', 'passwd': '4885a5eeb27abe7651607961617333c941e5afb7', 'id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'created_at': 1444848489.89561, 'image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120', 'admin': 1, 'name': 'glistenlau'}]
+INFO:root:set current user: glistenlau@gmail.com
+INFO:root:Response handler...
+INFO:root:call with args: {'request': <Request GET /api/blogs/001444848824833661488ae507a468f95c9cb0919b85b9d000/comments >, 'id': '001444848824833661488ae507a468f95c9cb0919b85b9d000'}
+INFO:root:SQL: select `id`, `created_at`, `user_id`, `user_name`, `user_image`, `blog_id`, `content` from `comments` where blog_id=? order by created_at desc
+INFO:root:[{'created_at': 1447050699.12513, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '001447050699125104d653cf186454585d1e76b4543e87b000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'react is awesome', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}, {'created_at': 1444923105.8597, 'user_id': '0014448484898944024ddfb524544dda022d31e64ae1a7f000', 'id': '0014449231058595ab6b57c5ca249a798258e09b6fe7050000', 'user_name': 'glistenlau', 'blog_id': '001444848824833661488ae507a468f95c9cb0919b85b9d000', 'content': 'test', 'user_image': 'http://www.gravatar.com/avatar/8ad95311f2b89593c3fe83ebaa750ece?d=mm&s=120'}]
