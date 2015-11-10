@@ -8,7 +8,7 @@ var Comment = React.createClass({
         return (
             <div className="container comment-box">
                 <div className="col-xs-1 col-md-1 smpadding">
-                    <img src={this.props.children.user_image} className="user-image" width="50px" height="50px" />
+                    <img src={this.props.children.user_image} className="user-image" width="60px" height="60px" />
                 </div>
                 <div className="col-xs-11 col-md-11 smpadding">
                     <div className="comment-user">
