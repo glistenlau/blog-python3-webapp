@@ -9,7 +9,10 @@
     var comment_url = '/api/blogs/{{ blog.id }}/comments';
     var comments = {{ comments|safe }}
     var blog = {{ blog|safe }};
-    var user = {{ __user__|safe }};
+    var user = null;
+    {% if __user__ %}
+        user = {{ __user__|safe}}
+    {% endif %}
 </script>
 
 {% endblock %}

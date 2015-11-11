@@ -124,7 +124,7 @@ var CommentBox = React.createClass({
 
     getInitialState: function() {
         return {
-            currentUser: this.props.user,
+            currentUser: this.props.user? this.props.user: null,
             data: this.props.comments,
             blog_id: window.location.pathname.split('/')[2]
         };
