@@ -22,7 +22,7 @@ var Blog = React.createClass({
             'tr',
             {
                 __source: {
-                    fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                    fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                     lineNumber: 22
                 }
             },
@@ -30,14 +30,14 @@ var Blog = React.createClass({
                 'td',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 23
                     }
                 },
                 React.createElement(
                     'a',
                     { href: '/blog/' + this.props.children.id, __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                             lineNumber: 23
                         }
                     },
@@ -48,14 +48,14 @@ var Blog = React.createClass({
                 'td',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 25
                     }
                 },
                 React.createElement(
                     'a',
                     { href: '/user/' + this.props.children.user_id, __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                             lineNumber: 25
                         }
                     },
@@ -66,7 +66,7 @@ var Blog = React.createClass({
                 'td',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 27
                     }
                 },
@@ -76,7 +76,7 @@ var Blog = React.createClass({
                 'td',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 28
                     }
                 },
@@ -84,7 +84,7 @@ var Blog = React.createClass({
                     'a',
                     { href: '/manage/blogs/edit?id=' + this.props.children.id,
                         className: 'btn btn-primary btn-xs', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                             lineNumber: 29
                         }
                     },
@@ -95,7 +95,7 @@ var Blog = React.createClass({
                     {
                         onClick: this.handleDelete,
                         className: 'btn btn-default btn-xs', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                             lineNumber: 31
                         }
                     },
@@ -115,7 +115,7 @@ var BlogList = React.createClass({
             return React.createElement(
                 Blog,
                 { key: index, __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 45
                     }
                 },
@@ -126,7 +126,7 @@ var BlogList = React.createClass({
         return React.createElement(
             'table',
             { className: 'table', __source: {
-                    fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                    fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                     lineNumber: 52
                 }
             },
@@ -134,7 +134,7 @@ var BlogList = React.createClass({
                 'thead',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 53
                     }
                 },
@@ -142,7 +142,7 @@ var BlogList = React.createClass({
                     'tr',
                     {
                         __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                             lineNumber: 54
                         }
                     },
@@ -150,7 +150,7 @@ var BlogList = React.createClass({
                         'th',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                                 lineNumber: 55
                             }
                         },
@@ -160,7 +160,7 @@ var BlogList = React.createClass({
                         'th',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                                 lineNumber: 56
                             }
                         },
@@ -170,7 +170,7 @@ var BlogList = React.createClass({
                         'th',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                                 lineNumber: 57
                             }
                         },
@@ -180,7 +180,7 @@ var BlogList = React.createClass({
                         'th',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                                 lineNumber: 58
                             }
                         },
@@ -192,7 +192,7 @@ var BlogList = React.createClass({
                 'tbody',
                 {
                     __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                         lineNumber: 61
                     }
                 },
@@ -224,7 +224,7 @@ var BlogsBox = React.createClass({
     },
     render: function render() {
         return React.createElement(BlogList, { blogs: this.state.blogs, __source: {
-                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
                 lineNumber: 93
             }
         });
@@ -233,7 +233,7 @@ var BlogsBox = React.createClass({
 
 ReactDOM.render(React.createElement(BlogsBox, {
     __source: {
-        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blogs.jsx',
+        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blogs.jsx',
         lineNumber: 99
     }
 }), document.getElementById('blogs'));

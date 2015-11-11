@@ -50,21 +50,21 @@ var EditBox = React.createClass({
         return React.createElement(
             'div',
             { className: 'container', __source: {
-                    fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                    fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                     lineNumber: 49
                 }
             },
             React.createElement(
                 'form',
                 { id: 'edit-form', onSubmit: this.handleSubmit, __source: {
-                        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                         lineNumber: 50
                     }
                 },
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 51
                         }
                     },
@@ -72,7 +72,7 @@ var EditBox = React.createClass({
                         'label',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                                 lineNumber: 52
                             }
                         },
@@ -85,7 +85,7 @@ var EditBox = React.createClass({
                         placeholder: 'Please Enter the title',
                         value: this.state.name,
                         ref: 'articleName', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 53
                         }
                     })
@@ -93,7 +93,7 @@ var EditBox = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 61
                         }
                     },
@@ -101,7 +101,7 @@ var EditBox = React.createClass({
                         'label',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                                 lineNumber: 62
                             }
                         },
@@ -115,7 +115,7 @@ var EditBox = React.createClass({
                         value: this.state.summary,
                         rows: '3',
                         ref: 'articleSummary', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 63
                         }
                     }),
@@ -123,7 +123,7 @@ var EditBox = React.createClass({
                         rows: '3',
                         ref: 'summaryPreview',
                         dangerouslySetInnerHTML: this.rawMarkup(this.state.summary), __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 71
                         }
                     })
@@ -131,7 +131,7 @@ var EditBox = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'form-group', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 76
                         }
                     },
@@ -139,7 +139,7 @@ var EditBox = React.createClass({
                         'label',
                         {
                             __source: {
-                                fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                                fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                                 lineNumber: 77
                             }
                         },
@@ -153,7 +153,7 @@ var EditBox = React.createClass({
                         value: this.state.content,
                         rows: '10',
                         ref: 'articleContent', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 78
                         }
                     }),
@@ -161,7 +161,7 @@ var EditBox = React.createClass({
                         rows: '3',
                         ref: 'contentPreview',
                         dangerouslySetInnerHTML: this.rawMarkup(this.state.content), __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 86
                         }
                     })
@@ -169,7 +169,7 @@ var EditBox = React.createClass({
                 React.createElement(
                     'button',
                     { type: 'submit', className: 'btn btn-primary', __source: {
-                            fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+                            fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
                             lineNumber: 91
                         }
                     },
@@ -181,7 +181,7 @@ var EditBox = React.createClass({
 });
 
 ReactDOM.render(React.createElement(EditBox, { ID: window.ID, action: window.action, __source: {
-        fileName: '../../../Dropbox/blog-python3-webapp/www/static/js/manage_blog_edit.jsx',
+        fileName: '../../../Dropbox/blog-python3-webapp/src/static/js/manage_blog_edit.jsx',
         lineNumber: 99
     }
 }), document.getElementById("blog_edit"));
