@@ -25,6 +25,9 @@ var Comment = React.createClass({
     }
 });
 
+
+
+
 var CommentList = React.createClass({
     render: function() {
         var commentNodes = this.props.data.map(function(comment, index) {
@@ -50,7 +53,6 @@ var CommentForm = React.createClass({
     },
 
     handleChange: function() {
-
         this.setState({value: (this.refs.text.value.length === 0)?
             'Type your comment here(**markdown** supported)...': this.refs.text.value});
     },
@@ -63,9 +65,6 @@ var CommentForm = React.createClass({
         e.preventDefault();
         var text = this.refs.text.value.trim();
 
-        if (!text) {
-            document.getElementsByClassName("commentForm").nodeType;
-        }
         this.props.onCommentSubmit({content: text});
         this.refs.text.value = '';
         this.setState({value: 'Type your comment here(**markdown**' +
@@ -118,22 +117,8 @@ var CommentForm = React.createClass({
 
 
 var CommentBox = React.createClass({
-    loadCommentsFromServer: function() {
-        var url = "/api/blogs/" + this.state.blog_id + "/comments";
-        $.get(url, function(result) {
-                this.setState({
-                    data: result.slice(1),
-                    currentUser: result[0]
-                });
-                $('#comment').show();
-            }.bind(this)
-        );
-    },
 
     handleCommentSubmit: function(comment) {
-        //var comments = this.state.data;
-        //var newComment = comments.concat([comment]);
-        //this.setState({data: newComment});
         var url = "/api/blogs/" + this.state.blog_id + "/comments";
         $.post(url, comment, function(res) {
             this.setState({data: [res].concat(this.state.data)});
@@ -142,14 +127,10 @@ var CommentBox = React.createClass({
 
     getInitialState: function() {
         return {
-            currentUser: null,
-            data: [],
+            currentUser: this.props.user,
+            data: this.props.comments,
             blog_id: window.location.pathname.split('/')[2]
         };
-    },
-
-    componentDidMount: function() {
-        this.loadCommentsFromServer();
     },
 
     render: function() {
@@ -166,6 +147,9 @@ var CommentBox = React.createClass({
 });
 
 ReactDOM.render(
-    <CommentBox />,
+    <CommentBox
+    comments={window.comments}
+    blog={window.blog}
+    user={window.user} />,
     document.getElementById('comment')
 );

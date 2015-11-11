@@ -5,28 +5,11 @@
 {% block beforehead %}
 
 
-<script type="text/babel" src="/static/js/comment.js"></script>
 <script>
-  var comment_url = '/api/blogs/{{ blog.id }}/comments';
-
-  $(function() {
-    var $form = $('#form-comment');
-    $form.submit(function(e) {
-      e.preventDefault();
-      $form.showFormError('');
-      var content = $form.find('textarea').val().trim();
-      if (content === '') {
-        return $form.showFormError('请输入评论内容！');
-      }
-      $form.postJSON(comment_url, { content: content }, function(err, result) {
-        if (err) {
-          return $form.showFormError(err);
-        }
-
-        refresh();
-      });
-    });
-  });
+    var comment_url = '/api/blogs/{{ blog.id }}/comments';
+    var comments = {{ comments|safe }}
+    var blog = {{ blog|safe }};
+    var user = {{ __user__|safe }};
 </script>
 
 {% endblock %}
@@ -34,13 +17,13 @@
 {% block content %}
 <div class="container">
     <h2>{{ blog.name }}</h2>
-    <p class="blog-post-meta">发表于{{ blog.created_at|datetime }}</p>
+    <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
     <p>{{ blog.html_content|safe }}</p>
 
-  </br>
-  <hr>
-  <div id="comment" hidden></div>
-
+    </br>
+    <hr>
+    <div id="comment"></div>
+    <script src="/static/out/comment.js"></script>
 
 </div>
 {% endblock %}

@@ -7,6 +7,10 @@ var EditBox = React.createClass({
         }
     },
 
+    rawMarkup: function(content) {
+        return {__html: marked(content, {sanitize: true})};
+    },
+
     handleChange: function() {
         this.setState({
             name: this.refs.articleName.value,
@@ -31,11 +35,11 @@ var EditBox = React.createClass({
         if (this.props.ID) {
             $.get('/api/blogs/' + this.props.ID)
                 .done(function(blog) {
-                    this.setState({
-                        name: blog.name,
-                        summary: blog.summary,
-                        content: blog.content
-                    })
+                    this.refs.articleName.value = blog.name;
+                    this.refs.articleSummary.value = blog.summary;
+                    this.refs.summaryPreview.innerHTML = blog.summary;
+                    this.refs.articleContent.value = blog.content;
+                    this.refs.contentPreview.innerHTML = blog.content;
                 }.bind(this));
         }
     },
@@ -64,6 +68,10 @@ var EditBox = React.createClass({
                                 value={this.state.summary}
                                 rows="3"
                                 ref="articleSummary" />
+                        <div className="form-group well"
+                             rows="3"
+                             ref="summaryPreview"
+                             dangerouslySetInnerHTML={this.rawMarkup(this.state.summary)}/>
                     </div>
                     <div className="form-group">
                         <label>Content</label>
@@ -75,6 +83,10 @@ var EditBox = React.createClass({
                                 value={this.state.content}
                                 rows="10"
                                 ref="articleContent" />
+                        <div className="form-group well"
+                             rows="3"
+                             ref="contentPreview"
+                             dangerouslySetInnerHTML={this.rawMarkup(this.state.content)}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
