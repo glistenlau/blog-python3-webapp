@@ -37,9 +37,9 @@ var EditBox = React.createClass({
                 .done(function(blog) {
                     this.refs.articleName.value = blog.name;
                     this.refs.articleSummary.value = blog.summary;
-                    this.refs.summaryPreview.innerHTML = blog.summary;
+                    this.refs.summaryPreview.innerHTML = marked(blog.summary, {sanitize: true});
                     this.refs.articleContent.value = blog.content;
-                    this.refs.contentPreview.innerHTML = blog.content;
+                    this.refs.contentPreview.innerHTML = marked(blog.content, {sanitize: true});
                 }.bind(this));
         }
     },
