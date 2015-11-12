@@ -77,68 +77,10 @@ var Blog = React.createClass({
     }
 });
 
-var Page = React.createClass({
-    displayName: "Page",
-
-    render: function render() {
-        React.createElement(
-            "li",
-            { className: this.props.active ? 'active' : '', __source: {
-                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                    lineNumber: 23
-                }
-            },
-            React.createElement(
-                "a",
-                { href: "#", __source: {
-                        fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                        lineNumber: 24
-                    }
-                },
-                this.props.num
-            )
-        );
-    }
-});
-
 var Pagination = React.createClass({
     displayName: "Pagination",
 
     render: function render() {
-        var getPageRange = function getPageRange() {
-            var left = 0,
-                right = 0;
-            while (this.props.page.page_index - left > 1) {
-                left++;
-            }
-            while (this.props.page.page_index + right < this.props.page.page_count) {
-                right++;
-            }
-
-            if (left >= 2 && right >= 2) {
-                return [this.props.page.page_index - 2, this.props.page.page_index + 2];
-            } else if (left >= 2) {
-                left = left >= 4 - right ? 4 - right : left;
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            } else if (right >= 2) {
-                right = right >= 4 - left ? 4 - left : right;
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            } else {
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            }
-        };
-
-        var paginationNodes = function paginationNodes() {
-            var pageRange = getPageRange();
-            for (var p = pageRange[0]; p <= pageRange[1]; p++) {
-                React.createElement(Page, { num: p, active: p === this.props.page.page_index, __source: {
-                        fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                        lineNumber: 58
-                    }
-                });
-            }
-        };
-
         var noPrev = this.props.page.has_previous ? '' : ' disabled';
         var noNext = this.props.page.has_next ? '' : ' disabled';
 
@@ -147,28 +89,28 @@ var Pagination = React.createClass({
             {
                 __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                    lineNumber: 66
+                    lineNumber: 27
                 }
             },
             React.createElement(
                 "ul",
                 { className: "pager", __source: {
                         fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                        lineNumber: 67
+                        lineNumber: 28
                     }
                 },
                 React.createElement(
                     "li",
                     { className: "previous" + noPrev, __source: {
                             fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                            lineNumber: 68
+                            lineNumber: 29
                         }
                     },
                     React.createElement(
                         "a",
-                        { href: "#", __source: {
+                        { href: "?page=" + (this.props.page.page_index - 1), __source: {
                                 fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                                lineNumber: 69
+                                lineNumber: 30
                             }
                         },
                         "← Previous"
@@ -176,34 +118,16 @@ var Pagination = React.createClass({
                 ),
                 React.createElement(
                     "li",
-                    {
-                        __source: {
-                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                            lineNumber: 71
-                        }
-                    },
-                    React.createElement(
-                        "ul",
-                        { className: "pagination", __source: {
-                                fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                                lineNumber: 72
-                            }
-                        },
-                        paginationNodes
-                    )
-                ),
-                React.createElement(
-                    "li",
                     { className: "next" + noNext, __source: {
                             fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                            lineNumber: 76
+                            lineNumber: 32
                         }
                     },
                     React.createElement(
                         "a",
-                        { href: "#", __source: {
+                        { href: "?page=" + (this.props.page.page_index + 1), __source: {
                                 fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                                lineNumber: 77
+                                lineNumber: 33
                             }
                         },
                         "Next →"
@@ -228,7 +152,7 @@ var Blogs = React.createClass({
         var blogNodes = this.state.blogs.map(function (blog) {
             return React.createElement(Blog, { blog: blog, key: blog.id, __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                    lineNumber: 97
+                    lineNumber: 53
                 }
             });
         });
@@ -238,13 +162,13 @@ var Blogs = React.createClass({
             {
                 __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                    lineNumber: 102
+                    lineNumber: 58
                 }
             },
             blogNodes,
             React.createElement(Pagination, { page: this.state.page, __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-                    lineNumber: 104
+                    lineNumber: 60
                 }
             })
         );
@@ -253,6 +177,6 @@ var Blogs = React.createClass({
 
 ReactDOM.render(React.createElement(Blogs, { page: window.page, blogs: window.blogs, __source: {
         fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
-        lineNumber: 111
+        lineNumber: 67
     }
 }), document.getElementById('blogs'));

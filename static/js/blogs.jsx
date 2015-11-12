@@ -18,47 +18,8 @@ var Blog = React.createClass({
     }
 });
 
-var Page = React.createClass({
-    render: function() {
-        <li className={this.props.active? 'active': ''}>
-            <a href="#">{this.props.num}</a>
-        </li>
-    }
-});
-
 var Pagination = React.createClass({
     render: function() {
-        var getPageRange = function() {
-            var
-                left = 0,
-                right = 0;
-            while (this.props.page.page_index - left > 1) {
-                left++;
-            }
-            while (this.props.page.page_index + right < this.props.page.page_count) {
-                right++;
-            }
-
-            if (left >= 2 && right >= 2) {
-                return [this.props.page.page_index - 2, this.props.page.page_index + 2];
-            } else if (left >= 2) {
-                left = left >= 4 - right? 4 - right: left;
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            } else if (right >= 2) {
-                right = right >= 4 - left? 4 - left: right;
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            } else {
-                return [this.props.page.page_index - left, this.props.page.page_index + right];
-            }
-        };
-
-        var paginationNodes = function() {
-            var pageRange = getPageRange();
-            for (var p = pageRange[0]; p <= pageRange[1]; p++) {
-                <Page num={p} active={p === this.props.page.page_index}/>
-            }
-        };
-
         var noPrev = this.props.page.has_previous? '': ' disabled';
         var noNext = this.props.page.has_next? '': ' disabled'
 
@@ -66,15 +27,10 @@ var Pagination = React.createClass({
             <div>
                 <ul className="pager">
                     <li className={"previous" + noPrev}>
-                        <a href="#">&larr; Previous</a>
-                    </li>
-                    <li>
-                        <ul className="pagination">
-                            {paginationNodes}
-                        </ul>
+                        <a href={"?page=" + (this.props.page.page_index - 1)}>&larr; Previous</a>
                     </li>
                     <li className={"next" + noNext}>
-                        <a href="#">Next &rarr;</a>
+                        <a href={"?page=" + (this.props.page.page_index + 1)}>Next &rarr;</a>
                     </li>
 
                 </ul>
