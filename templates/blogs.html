@@ -6,8 +6,12 @@
 {% endblock %}
 
 {% block content %}
+<script>
+  var pageIndex = {{ page_index }}
+  var blogs = {{ blogs|safe }}
+</script>
 
-<div class="col-xs-12 col-md-8">
+<div id="blogs" class="col-md-8">
 
   {% for blog in blogs %}
   <article>
@@ -20,9 +24,10 @@
   {% endfor %}
 
 </div>
+<script src="/static/out/blogs.js"></script>
 
 {% raw %}
-<div class="col-xs-12 col-md-8" ng-controller="paginationController">
+<div class="col-md-8" ng-controller="paginationController">
   <ul class="pager">
     <li><a href="#">Next Page</a></li>
     <li><a href="#">Previous Page</a></li>

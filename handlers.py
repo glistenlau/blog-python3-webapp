@@ -31,7 +31,7 @@ def get_page_index(page_str):
     try:
         p = int(page_str)
     except ValueError as e:
-        raise (ValueError)
+        raise e
     return 1 if p < 1 else p
 
 
@@ -92,7 +92,7 @@ def cookie2user(cookie_str):
 def index(*, page='1'):
     page_index = get_page_index(page)
     num = yield from Blog.findNumber('count(id)')
-    page = Page(num)
+    page = Page(num, page_index)
     if num == 0:
         blogs = []
     else:
