@@ -11,7 +11,7 @@ var Comment = React.createClass({
     render: function render() {
         return React.createElement(
             "div",
-            { className: "container comment-box", __source: {
+            { className: "comment-box", __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
                     lineNumber: 9
                 }
@@ -107,7 +107,8 @@ var CommentList = React.createClass({
 
         return React.createElement(
             "div",
-            { className: "row", __source: {
+            {
+                __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
                     lineNumber: 39
                 }
@@ -162,116 +163,100 @@ var CommentForm = React.createClass({
             );
         } else {
             return React.createElement(
-                "div",
-                { className: "container", __source: {
+                "form",
+                { className: "commentForm", onSubmit: this.handleSubmit, __source: {
                         fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
                         lineNumber: 80
                     }
                 },
                 React.createElement(
-                    "form",
-                    { className: "commentForm", onSubmit: this.handleSubmit, __source: {
+                    "div",
+                    { className: "col-xs-1 col-md-1 form-group smpadding", __source: {
                             fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
                             lineNumber: 81
                         }
                     },
+                    React.createElement("img", { src: this.props.currentUser.image, className: "user-image", width: "60px", height: "60px", __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 82
+                        }
+                    })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "col-xs-11 col-md-11 form-group smpadding", __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 84
+                        }
+                    },
                     React.createElement(
-                        "div",
-                        { className: "row form-group", __source: {
+                        "span",
+                        { className: "comment-user-name", __source: {
                                 fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                lineNumber: 82
+                                lineNumber: 85
                             }
                         },
                         React.createElement(
-                            "div",
-                            { className: "col-xs-1 col-md-1 form-group smpadding", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 83
-                                }
-                            },
-                            React.createElement("img", { src: this.props.currentUser.image, className: "user-image", width: "60px", height: "60px", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 84
-                                }
-                            })
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "col-xs-11 col-md-11 form-group smpadding", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 86
-                                }
-                            },
-                            React.createElement(
-                                "span",
-                                { className: "comment-user-name", __source: {
-                                        fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                        lineNumber: 87
-                                    }
-                                },
-                                React.createElement(
-                                    "b",
-                                    {
-                                        __source: {
-                                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                            lineNumber: 87
-                                        }
-                                    },
-                                    this.props.currentUser.name
-                                )
-                            )
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "col-xs-12 col-md-11 form-group smpadding comment-box", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 89
-                                }
-                            },
-                            React.createElement("textarea", {
-                                className: "form-control", rows: "3",
-                                placeholder: "Type your comment here(**markdown** supported)...",
-                                onChange: this.handleChange,
-                                ref: "text",
+                            "b",
+                            {
                                 __source: {
                                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 90
-                                }
-                            })
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "col-xs-12 col-md-11 col-md-push-1 form-group smpadding", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 97
+                                    lineNumber: 85
                                 }
                             },
-                            React.createElement("div", {
-                                className: "comment-content well",
-                                rows: "3",
-                                dangerouslySetInnerHTML: this.rawMarkup(), __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 98
-                                }
-                            })
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "smpadding", __source: {
-                                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                    lineNumber: 104
-                                }
-                            },
-                            React.createElement(
-                                "button",
-                                { type: "submit", className: "btn btn-primary button-right", __source: {
-                                        fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                                        lineNumber: 105
-                                    }
-                                },
-                                "Post comment"
-                            )
+                            this.props.currentUser.name
                         )
+                    )
+                ),
+                React.createElement(
+                    "div",
+                    { className: "col-xs-12 col-md-11 form-group smpadding comment-box", __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 87
+                        }
+                    },
+                    React.createElement("textarea", {
+                        className: "form-control", rows: "3",
+                        placeholder: "Type your comment here(**markdown** supported)...",
+                        onChange: this.handleChange,
+                        ref: "text",
+                        __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 88
+                        }
+                    })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "col-xs-12 col-md-11 col-md-push-1 form-group smpadding", __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 95
+                        }
+                    },
+                    React.createElement("div", {
+                        className: "comment-content well",
+                        rows: "3",
+                        dangerouslySetInnerHTML: this.rawMarkup(), __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 96
+                        }
+                    })
+                ),
+                React.createElement(
+                    "div",
+                    { className: "smpadding", __source: {
+                            fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                            lineNumber: 102
+                        }
+                    },
+                    React.createElement(
+                        "button",
+                        { type: "submit", className: "btn btn-primary button-right", __source: {
+                                fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                                lineNumber: 103
+                            }
+                        },
+                        "Post comment"
                     )
                 )
             );
@@ -302,7 +287,7 @@ var CommentBox = React.createClass({
             "div",
             { className: "commentBox", __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                    lineNumber: 135
+                    lineNumber: 131
                 }
             },
             React.createElement(
@@ -310,7 +295,7 @@ var CommentBox = React.createClass({
                 {
                     __source: {
                         fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                        lineNumber: 136
+                        lineNumber: 132
                     }
                 },
                 React.createElement(
@@ -318,7 +303,7 @@ var CommentBox = React.createClass({
                     {
                         __source: {
                             fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                            lineNumber: 136
+                            lineNumber: 132
                         }
                     },
                     "Comments"
@@ -327,12 +312,17 @@ var CommentBox = React.createClass({
             React.createElement(CommentForm, { currentUser: this.state.currentUser,
                 onCommentSubmit: this.handleCommentSubmit, __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                    lineNumber: 137
+                    lineNumber: 133
+                }
+            }),
+            React.createElement("div", { className: "clearfix", __source: {
+                    fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
+                    lineNumber: 135
                 }
             }),
             React.createElement(CommentList, { data: this.state.data, __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-                    lineNumber: 139
+                    lineNumber: 136
                 }
             })
         );
@@ -345,6 +335,6 @@ ReactDOM.render(React.createElement(CommentBox, {
     blog: window.blog,
     user: window.user, __source: {
         fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
-        lineNumber: 147
+        lineNumber: 144
     }
 }), document.getElementById('comment'));

@@ -11,7 +11,7 @@
     var blog = {{ blog|safe }};
     var user = null;
     {% if __user__ %}
-        user = {{ __user__|safe}}
+    user = {{ __user__|safe}}
     {% endif %}
 </script>
 
@@ -19,14 +19,18 @@
 
 {% block content %}
 <div class="container">
-    <h2>{{ blog.name }}</h2>
-    <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
-    <p>{{ blog.html_content|safe }}</p>
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+        <h2>{{ blog.name }}</h2>
+        <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
+        <p>{{ blog.html_content|safe }}</p>
 
-    </br>
-    <hr>
-    <div id="comment"></div>
-    <script src="/static/out/comment.js"></script>
+        </br>
+        <hr>
+        <div id="comment"></div>
+        <script src="/static/out/comment.js"></script>
+        </div>
+    </div>
 
 </div>
 {% endblock %}

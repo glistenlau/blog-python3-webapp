@@ -6,7 +6,7 @@ var Comment = React.createClass({
 
     render: function() {
         return (
-            <div className="container comment-box">
+            <div className="comment-box">
                 <div className="col-xs-1 col-md-1 smpadding">
                     <img src={this.props.children.user_image} className="user-image" width="60px" height="60px" />
                 </div>
@@ -36,7 +36,7 @@ var CommentList = React.createClass({
         });
 
         return (
-            <div className="row">
+            <div>
                 {commentNodes}
             </div>
         );
@@ -77,9 +77,7 @@ var CommentForm = React.createClass({
             );
         } else {
             return (
-                <div className="container">
                     <form className="commentForm" onSubmit={this.handleSubmit}>
-                        <div className="row form-group">
                             <div className="col-xs-1 col-md-1 form-group smpadding">
                                 <img src={this.props.currentUser.image} className="user-image" width="60px" height="60px"/>
                             </div>
@@ -104,9 +102,7 @@ var CommentForm = React.createClass({
                             <div className="smpadding">
                                 <button type="submit" className="btn btn-primary button-right">Post comment</button>
                             </div>
-                        </div>
                     </form>
-                </div>
             );
         }
     }
@@ -136,6 +132,7 @@ var CommentBox = React.createClass({
                 <h3><b>Comments</b></h3>
                 <CommentForm currentUser={this.state.currentUser}
                              onCommentSubmit={this.handleCommentSubmit} />
+                <div className="clearfix"></div>
                 <CommentList data={this.state.data} />
             </div>
         );
