@@ -1,100 +1,92 @@
 {% extends '__base__.html' %}
 
-{% block title %}注册{% endblock %}
+{% block title %}Sign up{% endblock %}
 
-{% block beforehead %}
-
-<script>
-    function validateEmail(email) {
-        var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
-        return re.test(email.toLowerCase());
-    }
-    $(function () {
-        var vm = new Vue({
-            el: '#vm',
-            data: {
-                name: '',
-                email: '',
-                password1: '',
-                password2: ''
-            },
-            methods: {
-                submit: function (event) {
-                    event.preventDefault();
-                    var $form = $('#vm');
-                    if (! this.name.trim()) {
-                        return $form.showFormError('请输入名字');
-                    }
-                    if (! validateEmail(this.email.trim().toLowerCase())) {
-                        return $form.showFormError('请输入正确的Email地址');
-                    }
-                    if (this.password1.length < 6) {
-                        return $form.showFormError('口令长度至少为6个字符');
-                    }
-                    if (this.password1 !== this.password2) {
-                        return $form.showFormError('两次输入的口令不一致');
-                    }
-                    var email = this.email.trim().toLowerCase();
-                    $form.postJSON('/api/users', {
-                        name: this.name.trim(),
-                        email: email,
-                        passwd: CryptoJS.SHA1(email + ':' + this.password1).toString()
-                    }, function (err, r) {
-                        if (err) {
-                            return $form.showFormError(err);
-                        }
-                        return location.assign('/');
-                    });
-                }
-            }
-        });
-        $('#vm').show();
-    });
-</script>
-
-{% endblock %}
+{% block beforehead %}{% endblock %}
 
 {% block content %}
-    <div  class="uk-width-2-3">
-        <h1>注册</h1>
-        <form id="vm" v-on="submit: submit"
-              class="uk-form uk-form-stacked">
-            <div class="uk-alert uk-alert-danger uk-hidden"></div>
-            <div class="uk-form-row">
-                <label class="uk-form-label">昵称:</label>
-                <div class="uk-form-controls">
-                    <input v-model="name" type="text" maxlength="50"
-                           placeholder="昵称" class="uk-width-1-1">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <label class="uk-form-label">电子邮件:</label>
-                <div class="uk-form-controls">
-                    <input v-model="email" type="text" maxlength="50"
-                           placeholder="your-name@example.com"
-                           class="uk-width-1-1">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <label class="uk-form-label">输入密码:</label>
-                <div class="uk-form-controls">
-                    <input v-model="password1" type="password" maxlength="50"
-                           placeholder="输入密码" class="uk-width-1-1">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <label class="uk-form-label">重复密码:</label>
-                <div class="uk-form-controls">
-                    <input v-model="password2" type="password"
-                           maxlength="50" placeholder="重复密码" class="uk-width-1-1">
-                </div>
-            </div>
-            <div class="uk-form-row">
-                <button type="submit"
-                        class="uk-button uk-button-primary">
-                    <i class="uk-icon-user"></i>注册
-                </button>
-            </div>
-        </form>
+<div class="container-fluid">
+
+  <form id="signupForm" class="form-signup">
+    <div class="row">
+      <div class="visible-md-block col-md-4"></div>
+      <div class="col-xs-12 col-md-4">
+        <h3 class="control-label" align="center">
+          <b>Sign up an account</b>
+        </h3>
+        </br>
+        <div id="signup-error" class="alert alert-danger" role="alert" hidden>
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          <span id="error-message"></span>
+        </div>
+        <lable for="username" class="sr-only">Username</lable>
+        <input type="text" id="username" class="form-control"
+               placeholder="Username" required autofocus>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="reinputPassword" class="sr-only">Re-enter password"</label>
+        <input type="password" id="reinputPassword" class="form-control"
+               placeholder="Re-enter password" required>
+        </br>
+        <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+      </div>
+      <div class="visible-md-block col-md-4"></div>
     </div>
+  </form>
+
+</div> <!-- /container -->
+<script>
+  var validateEmail = function(email) {
+    var re = /^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$/;
+    return re.test(email.toLowerCase());
+  };
+  $("#signupForm").submit(function(event) {
+    event.preventDefault();
+    var len = $('#username').val().trim().length;
+    if ($('#username').val().trim().length === 0) {
+      $('#error-message').text('Please enter username.');
+      $('#signup-error').show();
+      return;
+    }
+    if (!validateEmail($('#inputEmail').val().trim().toLowerCase())) {
+      $('#error-message').text('Please enter valid Email.');
+      $('#signup-error').show();
+      return;
+    }
+    if ($('#inputPassword').val().length < 6) {
+      $('#error-message').text('Please enter at least 6 characters for password.');
+      $('#signup-error').show();
+      return;
+    }
+    if ($('#inputPassword').val() != $('#reinputPassword').val()) {
+      $('#error-message').text('Two passwords are not matched.');
+      $('#signup-error').show();
+      return;
+    }
+
+    var email = $('#inputEmail').val().trim().toLowerCase();
+
+    $.post('api/users',
+        {
+          name: $('#username').val().trim(),
+          email: email,
+          passwd:
+              CryptoJS.SHA1(email + ':' + $('#inputPassword').val()).toString()
+        })
+        .done(function(rsp) {
+          if (rsp.error) {
+            $('#error-message').text(rsp.message);
+            $('#signup-error').show();
+          } else {
+            location.assign('/');
+          }
+        })
+        .fail(function(err) {
+          alert(err.message);
+        });
+  });
+</script>
 {% endblock %}
