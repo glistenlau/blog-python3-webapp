@@ -109,7 +109,7 @@ var Blogs = React.createClass({
     }
 });
 
-ReactDOM.render(React.createElement(Blogs, { pageIndex: window.pageIndex, blogs: window.blogs, __source: {
+ReactDOM.render(React.createElement(Blogs, { page: window.page, blogs: window.blogs, __source: {
         fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
         lineNumber: 45
     }

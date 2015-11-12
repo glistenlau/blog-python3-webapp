@@ -100,7 +100,7 @@ def index(*, page='1'):
             page.offset, page.limit))
     return {
         '__template__': 'blogs.html',
-        'page_index': page_index,
+        'page': page,
         'blogs': blogs
     }
 

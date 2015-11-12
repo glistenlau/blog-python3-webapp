@@ -42,6 +42,6 @@ var Blogs = React.createClass({
 });
 
 ReactDOM.render(
-    <Blogs pageIndex={window.pageIndex} blogs={window.blogs} />,
+    <Blogs page={window.page} blogs={window.blogs} />,
     document.getElementById('blogs')
 );
