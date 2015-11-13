@@ -1,84 +1,88 @@
+'use strict'
+
 // awesome.js
 
 // patch for lower-version IE:
 
-if (! window.console) {
+;
+
+if (!window.console) {
     window.console = {
-        log: function() {},
-        info: function() {},
-        error: function () {},
-        warn: function () {},
-        debug: function () {}
+        log: function log() {},
+        info: function info() {},
+        error: function error() {},
+        warn: function warn() {},
+        debug: function debug() {}
     };
 }
 
 // patch for string.trim():
 
-if (! String.prototype.trim) {
-    String.prototype.trim = function() {
+if (!String.prototype.trim) {
+    String.prototype.trim = function () {
         return this.replace(/^\s+|\s+$/g, '');
     };
 }
 
-if (! Number.prototype.toDateTime) {
+if (!Number.prototype.toDateTime) {
     var replaces = {
-        'yyyy': function(dt) {
+        'yyyy': function yyyy(dt) {
             return dt.getFullYear().toString();
         },
-        'yy': function(dt) {
+        'yy': function yy(dt) {
             return (dt.getFullYear() % 100).toString();
         },
-        'MM': function(dt) {
+        'MM': function MM(dt) {
             var m = dt.getMonth() + 1;
             return m < 10 ? '0' + m : m.toString();
         },
-        'M': function(dt) {
+        'M': function M(dt) {
             var m = dt.getMonth() + 1;
             return m.toString();
         },
-        'dd': function(dt) {
+        'dd': function dd(dt) {
             var d = dt.getDate();
             return d < 10 ? '0' + d : d.toString();
         },
-        'd': function(dt) {
+        'd': function d(dt) {
             var d = dt.getDate();
             return d.toString();
         },
-        'hh': function(dt) {
+        'hh': function hh(dt) {
             var h = dt.getHours();
             return h < 10 ? '0' + h : h.toString();
         },
-        'h': function(dt) {
+        'h': function h(dt) {
             var h = dt.getHours();
             return h.toString();
         },
-        'mm': function(dt) {
+        'mm': function mm(dt) {
             var m = dt.getMinutes();
             return m < 10 ? '0' + m : m.toString();
         },
-        'm': function(dt) {
+        'm': function m(dt) {
             var m = dt.getMinutes();
             return m.toString();
         },
-        'ss': function(dt) {
+        'ss': function ss(dt) {
             var s = dt.getSeconds();
             return s < 10 ? '0' + s : s.toString();
         },
-        's': function(dt) {
+        's': function s(dt) {
             var s = dt.getSeconds();
             return s.toString();
         },
-        'a': function(dt) {
+        'a': function a(dt) {
             var h = dt.getHours();
             return h < 12 ? 'AM' : 'PM';
         }
     };
     var token = /([a-zA-Z]+)/;
-    Number.prototype.toDateTime = function(format) {
-        var fmt = format || 'yyyy-MM-dd hh:mm:ss'
+    Number.prototype.toDateTime = function (format) {
+        var fmt = format || 'yyyy-MM-dd hh:mm:ss';
         var dt = new Date(this * 1000);
         var arr = fmt.split(token);
-        for (var i=0; i<arr.length; i++) {
+        for (var i = 0; i < arr.length; i++) {
             var s = arr[i];
             if (s && s in replaces) {
                 arr[i] = replaces[s](dt);
@@ -89,30 +93,27 @@ if (! Number.prototype.toDateTime) {
 }
 
 function encodeHtml(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 // parse query string as object:
 
 function parseQueryString() {
-    var
-        q = location.search,
+    var q = location.search,
         r = {},
-        i, pos, s, qs;
-    if (q && q.charAt(0)==='?') {
+        i,
+        pos,
+        s,
+        qs;
+    if (q && q.charAt(0) === '?') {
         qs = q.substring(1).split('&');
-        for (i=0; i<qs.length; i++) {
+        for (i = 0; i < qs.length; i++) {
             s = qs[i];
             pos = s.indexOf('=');
             if (pos <= 0) {
                 continue;
             }
-            r[s.substring(0, pos)] = decodeURIComponent(s.substring(pos+1)).replace(/\+/g, ' ');
+            r[s.substring(0, pos)] = decodeURIComponent(s.substring(pos + 1)).replace(/\+/g, ' ');
         }
     }
     return r;
@@ -125,61 +126,52 @@ function gotoPage(i) {
 }
 
 function refresh() {
-    var
-        t = new Date().getTime(),
+    var t = new Date().getTime(),
         url = location.pathname;
     if (location.search) {
         url = url + location.search + '&t=' + t;
-    }
-    else {
+    } else {
         url = url + '?t=' + t;
     }
     location.assign(url);
 }
 
 function toSmartDate(timestamp) {
-    if (typeof(timestamp)==='string') {
+    if (typeof timestamp === 'string') {
         timestamp = parseInt(timestamp);
     }
     if (isNaN(timestamp)) {
         return '';
     }
 
-    var
-        today = new Date(g_time),
+    var today = new Date(g_time),
         now = today.getTime(),
         s = '1分钟前',
         t = now - timestamp;
     if (t > 604800000) {
         // 1 week ago:
         var that = new Date(timestamp);
-        var
-            y = that.getFullYear(),
+        var y = that.getFullYear(),
             m = that.getMonth() + 1,
             d = that.getDate(),
             hh = that.getHours(),
             mm = that.getMinutes();
-        s = y===today.getFullYear() ? '' : y + '年';
+        s = y === today.getFullYear() ? '' : y + '年';
         s = s + m + '月' + d + '日' + hh + ':' + (mm < 10 ? '0' : '') + mm;
-    }
-    else if (t >= 86400000) {
+    } else if (t >= 86400000) {
         // 1-6 days ago:
         s = Math.floor(t / 86400000) + '天前';
-    }
-    else if (t >= 3600000) {
+    } else if (t >= 3600000) {
         // 1-23 hours ago:
         s = Math.floor(t / 3600000) + '小时前';
-    }
-    else if (t >= 60000) {
+    } else if (t >= 60000) {
         s = Math.floor(t / 60000) + '分钟前';
     }
     return s;
 }
 
-
-
-$(function() {
-    $('.x-smartdate').each(function() {
+$(function () {
+    $('.x-smartdate').each(function () {
         $(this).removeClass('x-smartdate').text(toSmartDate($(this).attr('date')));
     });
 });
@@ -187,22 +179,20 @@ $(function() {
 // JS Template:
 
 function Template(tpl) {
-    var
-        fn,
+    var fn,
         match,
         code = ['var r=[];\nvar _html = function (str) { return str.replace(/&/g, \'&amp;\').replace(/"/g, \'&quot;\').replace(/\'/g, \'&#39;\').replace(/</g, \'&lt;\').replace(/>/g, \'&gt;\'); };'],
         re = /\{\s*([a-zA-Z\.\_0-9()]+)(\s*\|\s*safe)?\s*\}/m,
-        addLine = function (text) {
-            code.push('r.push(\'' + text.replace(/\'/g, '\\\'').replace(/\n/g, '\\n').replace(/\r/g, '\\r') + '\');');
-        };
+        addLine = function addLine(text) {
+        code.push('r.push(\'' + text.replace(/\'/g, '\\\'').replace(/\n/g, '\\n').replace(/\r/g, '\\r') + '\');');
+    };
     while (match = re.exec(tpl)) {
         if (match.index > 0) {
             addLine(tpl.slice(0, match.index));
         }
         if (match[2]) {
             code.push('r.push(String(this.' + match[1] + '));');
-        }
-        else {
+        } else {
             code.push('r.push(_html(String(this.' + match[1] + ')));');
         }
         tpl = tpl.substring(match.index + match[0].length);
@@ -216,11 +206,10 @@ function Template(tpl) {
 }
 
 function redirect(url) {
-    var
-        hash_pos = url.indexOf('#'),
+    var hash_pos = url.indexOf('#'),
         query_pos = url.indexOf('?'),
         hash = '';
-    if (hash_pos >=0 ) {
+    if (hash_pos >= 0) {
         hash = url.substring(hash_pos);
         url = url.substring(0, hash_pos);
     }
@@ -235,13 +224,11 @@ function _bindSubmit($form) {
     $form.submit(function (event) {
         event.preventDefault();
         showFormError($form, null);
-        var
-            fn_error = $form.attr('fn-error'),
+        var fn_error = $form.attr('fn-error'),
             fn_success = $form.attr('fn-success'),
             fn_data = $form.attr('fn-data'),
             data = fn_data ? window[fn_data]($form) : $form.serialize();
-        var
-            $submit = $form.find('button[type=submit]'),
+        var $submit = $form.find('button[type=submit]'),
             $i = $submit.find('i'),
             iconClass = $i.attr('class');
         if (!iconClass || iconClass.indexOf('uk-icon') < 0) {
@@ -255,10 +242,9 @@ function _bindSubmit($form) {
                 console.log('postJSON failed: ' + JSON.stringify(err));
                 $submit.removeAttr('disabled');
                 fn_error ? fn_error() : showFormError($form, err);
-            }
-            else {
+            } else {
                 var r = fn_success ? window[fn_success](result) : false;
-                if (r===false) {
+                if (r === false) {
                     $submit.removeAttr('disabled');
                 }
             }
@@ -276,8 +262,8 @@ $(function () {
     });
 });
 
-$(function() {
-    if (location.pathname === '/' || location.pathname.indexOf('/blog')===0) {
+$(function () {
+    if (location.pathname === '/' || location.pathname.indexOf('/blog') === 0) {
         $('li[data-url=blogs]').addClass('uk-active');
     }
 });

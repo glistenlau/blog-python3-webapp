@@ -22,8 +22,9 @@
     }
 
     .form-signin {
+      max-width: 330px;
       padding: 15px;
-      margin: 15px;
+      margin: 0 auto;
     }
 
   </style>
@@ -33,27 +34,21 @@
 <div class="container-fluid">
 
   <form id="signinForm" class="form-signin">
-    <div class="row">
-      <div class="visible-md-block col-md-4"></div>
-      <div class="col-xs-12 col-md-4">
-        <h3 class="control-label" align="center">
-          <b>Log in to Glisten Blog</b>
-        </h3>
-        </br>
-        <div id="signin-error" class="alert alert-danger" role="alert" hidden>
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <span id="error-message"></span>
-        </div>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        </br>
-        <button class="btn btn-primary btn-block" type="submit">Log in</button>
-      </div>
-      <div class="visible-md-block col-md-4"></div>
+    <h3 class="control-label" align="center">
+      <b>Log in to Glisten Blog</b>
+    </h3>
+    </br>
+    <div id="signin-error" class="alert alert-danger" role="alert" hidden>
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      <span id="error-message"></span>
     </div>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    </br>
+    <button class="btn btn-primary btn-block" type="submit">Log in</button>
   </form>
 
 </div> <!-- /container -->
@@ -65,21 +60,21 @@
     var data = {
       email: email,
       passwd: $("#inputPassword").val() === ''? '': CryptoJS.SHA1(email +
-          ':' + $("#inputPassword").val()).toString()
+              ':' + $("#inputPassword").val()).toString()
     };
 
     $.post('api/authenticate', data)
-        .done(function(rsp) {
-          if (rsp.error) {
-            $('#error-message').text(rsp.message);
-            $('#signin-error').show();
-          } else {
-            location.assign('/');
-          }
-        })
-        .fail(function(err) {
-          alert(err.message);
-        });
+            .done(function(rsp) {
+              if (rsp.error) {
+                $('#error-message').text(rsp.message);
+                $('#signin-error').show();
+              } else {
+                location.assign('/');
+              }
+            })
+            .fail(function(err) {
+              alert(err.message);
+            });
     event.preventDefault();
   });
 </script>
