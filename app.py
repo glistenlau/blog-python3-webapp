@@ -107,7 +107,7 @@ def response_factory(app, handler):
             r = yield from handler(request)
         except pymysql.err.OperationalError as e:
 
-            connect_mysql(asyncio.get_event_loop())
+            yield from connect_mysql(asyncio.get_event_loop())
             r = yield from handler(request)
 
         if isinstance(r, web.StreamResponse):
@@ -180,7 +180,7 @@ def connect_mysql(loop):
     yield from orm.create_pool(loop=loop,
                                user='www-data',
                                host='localhost',
-                               port=3307,
+                               port=3306,
                                password='www-data',
                                db='awesome')
 
