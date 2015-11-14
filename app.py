@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.INFO);
 import os
 import time
 import orm
+import pymysql
 from aiohttp import web
 from datetime import datetime
 from jinja2 import Environment
@@ -101,7 +102,14 @@ def response_factory(app, handler):
     @asyncio.coroutine
     def response(request):
         logging.info('Response handler...')
-        r = yield from handler(request)
+
+        try:
+            r = yield from handler(request)
+        except pymysql.err.OperationalError as e:
+
+            connect_mysql(asyncio.get_event_loop())
+            r = yield from handler(request)
+
         if isinstance(r, web.StreamResponse):
             return r
         if isinstance(r, bytes):
@@ -167,15 +175,19 @@ def datetime_filter(t):
     dt = datetime.fromtimestamp(t)
     return u'%s年%s月%s日' % (dt.year, dt.month, dt.day)
 
+@asyncio.coroutine
+def connect_mysql(loop):
+    yield from orm.create_pool(loop=loop,
+                               user='www-data',
+                               host='localhost',
+                               port=3307,
+                               password='www-data',
+                               db='awesome')
+
 
 @asyncio.coroutine
 def init(loop):
-    yield from orm.create_pool(loop=loop,
-                                   user='www-data',
-                                   host='localhost',
-                                   port=3307,
-                                   password='www-data',
-                                   db='awesome')
+    yield from connect_mysql(loop)
     app = web.Application(loop=loop,
                           middlewares=[logger_factory,
                                        data_factory,
