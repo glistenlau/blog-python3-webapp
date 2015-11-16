@@ -4,7 +4,7 @@
 
 {% block beforehead %}
 
-
+<link rel="stylesheet" href="/static/css/github-markdown.css">
 <script>
     var comment_url = '/api/blogs/{{ blog.id }}/comments';
     var comments = {{ comments|safe }}
@@ -20,15 +20,19 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-md-8">
-        <h2>{{ blog.name }}</h2>
-        <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
-        <p>{{ blog.html_content|safe }}</p>
+        <div style="margin:0 auto;max-width: 700px">
+            <h2>{{ blog.name }}</h2>
+            <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
+            <article id="blog-content" class="markdown-body"></article>
+            <script>
 
-        </br>
-        <hr>
-        <div id="comment"></div>
-        <script src="/static/js/comment.js"></script>
+                document.getElementById("blog-content").innerHTML = marked(blog.content);
+            </script>
+
+            </br>
+            <hr>
+            <div id="comment"></div>
+            <script src="/static/js/comment.js"></script>
         </div>
     </div>
 

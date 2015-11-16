@@ -180,7 +180,7 @@ def connect_mysql(loop):
     yield from orm.create_pool(loop=loop,
                                user='www-data',
                                host='localhost',
-                               port=3306,
+                               port=3307,
                                password='www-data',
                                db='awesome')
 
