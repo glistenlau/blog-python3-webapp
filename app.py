@@ -10,8 +10,7 @@ async web application
 import asyncio
 import json
 import logging
-
-logging.basicConfig(level=logging.INFO);
+logging.basicConfig(level=logging.INFO)
 import os
 import time
 import orm
@@ -20,7 +19,6 @@ from aiohttp import web
 from datetime import datetime
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
-from config import configs
 from coroweb import add_routes
 from coroweb import add_static
 from handlers import cookie2user
@@ -180,7 +178,7 @@ def connect_mysql(loop):
     yield from orm.create_pool(loop=loop,
                                user='www-data',
                                host='localhost',
-                               port=3306,
+                               port=3307,
                                password='www-data',
                                db='awesome')
 

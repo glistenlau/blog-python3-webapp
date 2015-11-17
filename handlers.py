@@ -10,15 +10,13 @@ import time
 import json, logging, hashlib, base64, asyncio
 from aiohttp import web
 from coroweb import get, post
-from models import User, Comment, Blog, next_id
 from apis import Page, APIValueError, APIResourceNotFoundError, APIError, \
     APIPermissionError
 from models import User, Comment, Blog, next_id
-from config import configs
 from markdown2 import markdown
 
 COOKIE_NAME = 'awesession'
-_COOKIE_KEY = configs.session.secret
+_COOKIE_KEY = 'Awesome'
 
 
 def check_admin(request):
