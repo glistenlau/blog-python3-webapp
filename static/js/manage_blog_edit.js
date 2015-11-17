@@ -119,7 +119,7 @@ var EditBox = React.createClass({
                             lineNumber: 63
                         }
                     }),
-                    React.createElement('div', { className: 'form-group well',
+                    React.createElement('div', { className: 'content form-group well',
                         rows: '3',
                         ref: 'summaryPreview',
                         dangerouslySetInnerHTML: this.rawMarkup(this.state.summary), __source: {
@@ -157,7 +157,7 @@ var EditBox = React.createClass({
                             lineNumber: 78
                         }
                     }),
-                    React.createElement('div', { className: 'form-group well',
+                    React.createElement('div', { className: 'content form-group well',
                         rows: '3',
                         ref: 'contentPreview',
                         dangerouslySetInnerHTML: this.rawMarkup(this.state.content), __source: {
