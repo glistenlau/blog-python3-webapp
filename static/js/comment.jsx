@@ -16,7 +16,7 @@ var Comment = React.createClass({
                         <span className="comment-created-time">    •    {this.props.children.created_at.toDateTime()}</span>
                     </div>
                     <div style={{padding: '5px 0'}}
-                         className="comment-content"
+                         className="content"
                          dangerouslySetInnerHTML={this.rawMarkup()} />
                 </div>
                 <div className="clearfix"></div>
@@ -94,7 +94,7 @@ var CommentForm = React.createClass({
                             </div>
                             <div className="col-xs-12 col-md-11 col-md-push-1 form-group smpadding">
                                 <div
-                                    className="comment-content well"
+                                    className="content well"
                                     rows="3"
                                     dangerouslySetInnerHTML={this.rawMarkup()}>
                                 </div>

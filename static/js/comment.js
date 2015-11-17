@@ -73,7 +73,7 @@ var Comment = React.createClass({
                     )
                 ),
                 React.createElement("div", { style: { padding: '5px 0' },
-                    className: "comment-content",
+                    className: "content",
                     dangerouslySetInnerHTML: this.rawMarkup(), __source: {
                         fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
                         lineNumber: 18
@@ -234,7 +234,7 @@ var CommentForm = React.createClass({
                         }
                     },
                     React.createElement("div", {
-                        className: "comment-content well",
+                        className: "content well",
                         rows: "3",
                         dangerouslySetInnerHTML: this.rawMarkup(), __source: {
                             fileName: "../../../Dropbox/blog-python3-webapp/static/js/comment.jsx",
