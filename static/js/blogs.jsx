@@ -1,6 +1,6 @@
 var Blog = React.createClass({
     rawMarkup: function() {
-        var rawMarkup = marked(this.props.blog.summary, {sanitize: true});
+        var rawMarkup = marked(this.props.blog.summary);
         return {__html: rawMarkup}
     },
 
@@ -9,7 +9,7 @@ var Blog = React.createClass({
             <article>
                 <h2><a href={"/blog/" + this.props.blog.id}>{this.props.blog.name}</a></h2>
                 <p className="blog-post-meta">{this.props.blog.created_at.toDateTime()}</p>
-                <div dangerouslySetInnerHTML={this.rawMarkup()} />
+                <div className="content" dangerouslySetInnerHTML={this.rawMarkup()} />
                 <p><a href={"/blog/" + this.props.blog.id}>Continue...</a></p>
                 <hr />
             </article>
@@ -21,7 +21,7 @@ var Blog = React.createClass({
 var Pagination = React.createClass({
     render: function() {
         var noPrev = this.props.page.has_previous? '': ' disabled';
-        var noNext = this.props.page.has_next? '': ' disabled'
+        var noNext = this.props.page.has_next? '': ' disabled';
 
         return (
             <div>

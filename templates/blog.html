@@ -23,9 +23,8 @@
         <div style="margin:0 auto;max-width: 700px">
             <h2>{{ blog.name }}</h2>
             <p class="blog-post-meta">Posted {{ blog.created_at|datetime }}</p>
-            <article id="blog-content" class="markdown-body"></article>
+            <article id="blog-content" class="content"></article>
             <script>
-
                 document.getElementById("blog-content").innerHTML = marked(blog.content);
             </script>
 

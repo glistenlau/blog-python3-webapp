@@ -4,7 +4,7 @@ var Blog = React.createClass({
     displayName: "Blog",
 
     rawMarkup: function rawMarkup() {
-        var rawMarkup = marked(this.props.blog.summary, { sanitize: true });
+        var rawMarkup = marked(this.props.blog.summary);
         return { __html: rawMarkup };
     },
 
@@ -44,7 +44,7 @@ var Blog = React.createClass({
                 },
                 this.props.blog.created_at.toDateTime()
             ),
-            React.createElement("div", { dangerouslySetInnerHTML: this.rawMarkup(), __source: {
+            React.createElement("div", { className: "content", dangerouslySetInnerHTML: this.rawMarkup(), __source: {
                     fileName: "../../../Dropbox/blog-python3-webapp/static/js/blogs.jsx",
                     lineNumber: 12
                 }
